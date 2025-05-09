@@ -1,0 +1,1238 @@
+[
+{
+ "frame_id":1, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-28__08-57-00(2).JPG", 
+ "objects": [ 
+  {"class_id":25, "name":"kudu", "relative_coordinates":{"center_x":0.785681, "center_y":0.596185, "width":0.400811, "height":0.644814}, "confidence":0.737342}, 
+  {"class_id":0, "name":"elephant", "relative_coordinates":{"center_x":0.520745, "center_y":0.861846, "width":0.226018, "height":0.118055}, "confidence":0.379258}
+ ] 
+}, 
+{
+ "frame_id":2, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-07-23__16-18-34(3).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":3, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-07-23__14-49-32(3).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":4, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-09__09-04-52(1).JPG", 
+ "objects": [ 
+  {"class_id":4, "name":"buffalo", "relative_coordinates":{"center_x":0.422051, "center_y":0.756986, "width":0.683954, "height":0.291585}, "confidence":0.332845}
+ ] 
+}, 
+{
+ "frame_id":5, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-07-23__15-06-26(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":6, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-09-24__21-12-00(2).JPG", 
+ "objects": [ 
+  {"class_id":42, "name":"small_antelope", "relative_coordinates":{"center_x":0.858481, "center_y":0.820533, "width":0.223144, "height":0.211937}, "confidence":0.997027}
+ ] 
+}, 
+{
+ "frame_id":7, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-03__23-45-58(2).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":8, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-09-21__14-13-28(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":9, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2021-03-07__16-07-26(2).JPG", 
+ "objects": [ 
+  {"class_id":25, "name":"kudu", "relative_coordinates":{"center_x":0.518853, "center_y":0.435814, "width":1.041086, "height":0.833765}, "confidence":0.831937}
+ ] 
+}, 
+{
+ "frame_id":10, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-15__05-28-32(2).JPG", 
+ "objects": [ 
+  {"class_id":2, "name":"baboon", "relative_coordinates":{"center_x":0.503401, "center_y":0.856880, "width":0.221583, "height":0.137985}, "confidence":0.997712}
+ ] 
+}, 
+{
+ "frame_id":11, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-08-15__04-22-54(1).JPG", 
+ "objects": [ 
+  {"class_id":35, "name":"sable", "relative_coordinates":{"center_x":0.104472, "center_y":0.560089, "width":0.207280, "height":0.547052}, "confidence":0.468798}
+ ] 
+}, 
+{
+ "frame_id":12, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-12-22__16-34-30(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":13, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-08-09__11-14-50(2).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":14, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2021-02-20__03-59-54(2).JPG", 
+ "objects": [ 
+  {"class_id":35, "name":"sable", "relative_coordinates":{"center_x":0.646030, "center_y":0.784451, "width":0.281904, "height":0.258380}, "confidence":0.981968}
+ ] 
+}, 
+{
+ "frame_id":15, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-07-23__14-38-26(3).JPG", 
+ "objects": [ 
+  {"class_id":20, "name":"human", "relative_coordinates":{"center_x":0.217919, "center_y":0.415336, "width":0.416830, "height":0.786114}, "confidence":0.964682}
+ ] 
+}, 
+{
+ "frame_id":16, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-03__23-47-18(2).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":17, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-07__19-18-32(3).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":18, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-22__11-53-08(2).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":19, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-08-05__11-37-50(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":20, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-09__01-26-26(3).JPG", 
+ "objects": [ 
+  {"class_id":42, "name":"small_antelope", "relative_coordinates":{"center_x":0.177373, "center_y":0.859693, "width":0.144641, "height":0.138423}, "confidence":0.905319}
+ ] 
+}, 
+{
+ "frame_id":21, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-09__09-10-26(1).JPG", 
+ "objects": [ 
+  {"class_id":4, "name":"buffalo", "relative_coordinates":{"center_x":0.445191, "center_y":0.785532, "width":0.677960, "height":0.268311}, "confidence":0.705599}
+ ] 
+}, 
+{
+ "frame_id":22, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-26__19-35-46(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":23, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-09-04__11-28-46(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":24, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-07-27__07-00-00(1).JPG", 
+ "objects": [ 
+  {"class_id":39, "name":"warthog", "relative_coordinates":{"center_x":0.512940, "center_y":0.802327, "width":0.344729, "height":0.238155}, "confidence":0.998992}
+ ] 
+}, 
+{
+ "frame_id":25, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-23__21-06-50(2).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":26, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2021-04-24__09-07-02(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":27, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-07-26__12-16-26(2).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":28, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-15__05-44-26(1).JPG", 
+ "objects": [ 
+  {"class_id":2, "name":"baboon", "relative_coordinates":{"center_x":0.547748, "center_y":0.871040, "width":0.148612, "height":0.107184}, "confidence":0.989235}, 
+  {"class_id":2, "name":"baboon", "relative_coordinates":{"center_x":0.378842, "center_y":0.867372, "width":0.219996, "height":0.121259}, "confidence":0.967459}
+ ] 
+}, 
+{
+ "frame_id":29, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-31__20-15-04(2).JPG", 
+ "objects": [ 
+  {"class_id":42, "name":"small_antelope", "relative_coordinates":{"center_x":0.763688, "center_y":0.851861, "width":0.141761, "height":0.149600}, "confidence":0.984889}
+ ] 
+}, 
+{
+ "frame_id":30, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-06__12-05-42(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":31, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-07-23__16-29-06(3).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":32, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-08-26__10-57-34(3).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":33, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-09__09-15-12(3).JPG", 
+ "objects": [ 
+  {"class_id":4, "name":"buffalo", "relative_coordinates":{"center_x":0.629371, "center_y":0.754242, "width":0.720827, "height":0.311020}, "confidence":0.849592}
+ ] 
+}, 
+{
+ "frame_id":34, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-04__07-10-26(2).JPG", 
+ "objects": [ 
+  {"class_id":0, "name":"elephant", "relative_coordinates":{"center_x":0.838090, "center_y":0.590461, "width":0.338285, "height":0.650899}, "confidence":0.902249}
+ ] 
+}, 
+{
+ "frame_id":35, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-08-30__06-41-20(3).JPG", 
+ "objects": [ 
+  {"class_id":39, "name":"warthog", "relative_coordinates":{"center_x":0.907761, "center_y":0.840859, "width":0.187960, "height":0.163437}, "confidence":0.995939}, 
+  {"class_id":39, "name":"warthog", "relative_coordinates":{"center_x":0.470928, "center_y":0.773094, "width":0.184207, "height":0.135664}, "confidence":0.989923}
+ ] 
+}, 
+{
+ "frame_id":36, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-08-23__01-46-36(2).JPG", 
+ "objects": [ 
+  {"class_id":0, "name":"elephant", "relative_coordinates":{"center_x":0.188940, "center_y":0.436819, "width":0.379623, "height":0.861605}, "confidence":0.899897}
+ ] 
+}, 
+{
+ "frame_id":37, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-25__10-48-46(2).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":38, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-07-23__14-37-48(2).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":39, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-12-04__02-48-58(1).JPG", 
+ "objects": [ 
+  {"class_id":35, "name":"sable", "relative_coordinates":{"center_x":0.276809, "center_y":0.594177, "width":0.190100, "height":0.206412}, "confidence":0.977680}
+ ] 
+}, 
+{
+ "frame_id":40, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-17__11-56-10(3).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":41, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-08-19__13-26-56(1).JPG", 
+ "objects": [ 
+  {"class_id":12, "name":"eland", "relative_coordinates":{"center_x":0.283377, "center_y":0.777281, "width":0.374562, "height":0.282087}, "confidence":0.319137}, 
+  {"class_id":4, "name":"buffalo", "relative_coordinates":{"center_x":0.775959, "center_y":0.569675, "width":0.192433, "height":0.142457}, "confidence":0.813849}
+ ] 
+}, 
+{
+ "frame_id":42, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-15__05-40-22(1).JPG", 
+ "objects": [ 
+  {"class_id":2, "name":"baboon", "relative_coordinates":{"center_x":0.563703, "center_y":0.865497, "width":0.203832, "height":0.122823}, "confidence":0.996525}
+ ] 
+}, 
+{
+ "frame_id":43, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-06__12-05-44(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":44, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-09-26__10-13-52(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":45, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-23__21-06-50(3).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":46, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-08-15__04-24-04(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":47, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-07-26__12-16-26(3).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":48, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-31__20-15-04(3).JPG", 
+ "objects": [ 
+  {"class_id":42, "name":"small_antelope", "relative_coordinates":{"center_x":0.802230, "center_y":0.851816, "width":0.121441, "height":0.144708}, "confidence":0.992785}
+ ] 
+}, 
+{
+ "frame_id":49, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-07-23__15-05-18(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":50, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-07-23__16-29-06(2).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":51, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-22__03-24-32(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":52, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-08-26__10-57-34(2).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":53, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-09__09-15-12(2).JPG", 
+ "objects": [ 
+  {"class_id":4, "name":"buffalo", "relative_coordinates":{"center_x":0.557458, "center_y":0.751259, "width":0.902850, "height":0.331362}, "confidence":0.335905}
+ ] 
+}, 
+{
+ "frame_id":54, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-04__07-10-26(3).JPG", 
+ "objects": [ 
+  {"class_id":0, "name":"elephant", "relative_coordinates":{"center_x":0.840283, "center_y":0.594526, "width":0.333779, "height":0.629509}, "confidence":0.925922}, 
+  {"class_id":0, "name":"elephant", "relative_coordinates":{"center_x":0.101338, "center_y":0.520063, "width":0.068284, "height":0.108883}, "confidence":0.852592}
+ ] 
+}, 
+{
+ "frame_id":55, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-08-30__06-41-20(2).JPG", 
+ "objects": [ 
+  {"class_id":39, "name":"warthog", "relative_coordinates":{"center_x":0.610320, "center_y":0.783078, "width":0.187510, "height":0.145213}, "confidence":0.987798}
+ ] 
+}, 
+{
+ "frame_id":56, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-08-23__01-46-36(3).JPG", 
+ "objects": [ 
+  {"class_id":0, "name":"elephant", "relative_coordinates":{"center_x":0.324115, "center_y":0.439268, "width":0.664492, "height":0.873943}, "confidence":0.823331}
+ ] 
+}, 
+{
+ "frame_id":57, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-23__12-09-28(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":58, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-12-04__19-30-50(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":59, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-15__05-42-22(1).JPG", 
+ "objects": [ 
+  {"class_id":2, "name":"baboon", "relative_coordinates":{"center_x":0.452640, "center_y":0.870158, "width":0.177374, "height":0.112561}, "confidence":0.995292}
+ ] 
+}, 
+{
+ "frame_id":60, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2021-02-08__15-07-54(1).JPG", 
+ "objects": [ 
+  {"class_id":25, "name":"kudu", "relative_coordinates":{"center_x":0.159226, "center_y":0.707805, "width":0.319846, "height":0.299808}, "confidence":0.995572}
+ ] 
+}, 
+{
+ "frame_id":61, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-07-23__14-37-48(3).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":62, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-25__10-48-46(3).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":63, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-17__11-56-10(2).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":64, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-12-19__18-34-12(2).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":65, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-06__08-56-56(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":66, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-08-10__02-35-34(1).JPG", 
+ "objects": [ 
+  {"class_id":42, "name":"small_antelope", "relative_coordinates":{"center_x":0.610425, "center_y":0.838834, "width":0.262471, "height":0.179182}, "confidence":0.983548}
+ ] 
+}, 
+{
+ "frame_id":67, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-07-23__16-18-34(2).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":68, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-22__03-24-30(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":69, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-28__08-57-00(3).JPG", 
+ "objects": [ 
+  {"class_id":39, "name":"warthog", "relative_coordinates":{"center_x":0.621170, "center_y":0.898607, "width":0.211897, "height":0.054109}, "confidence":0.282924}, 
+  {"class_id":7, "name":"bushpig", "relative_coordinates":{"center_x":0.609007, "center_y":0.897501, "width":0.192700, "height":0.055239}, "confidence":0.455282}
+ ] 
+}, 
+{
+ "frame_id":70, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2021-02-08__15-05-26(2).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":71, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-09-24__21-12-00(3).JPG", 
+ "objects": [ 
+  {"class_id":42, "name":"small_antelope", "relative_coordinates":{"center_x":0.869913, "center_y":0.850298, "width":0.232303, "height":0.152108}, "confidence":0.992900}
+ ] 
+}, 
+{
+ "frame_id":72, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-07-23__14-49-32(2).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":73, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-07-23__14-36-46(1).JPG", 
+ "objects": [ 
+  {"class_id":20, "name":"human", "relative_coordinates":{"center_x":0.099332, "center_y":0.427103, "width":0.196833, "height":0.819886}, "confidence":0.979443}
+ ] 
+}, 
+{
+ "frame_id":74, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-03__23-45-58(3).JPG", 
+ "objects": [ 
+  {"class_id":5, "name":"bushbaby", "relative_coordinates":{"center_x":0.741321, "center_y":0.417621, "width":0.414862, "height":0.786528}, "confidence":0.269454}
+ ] 
+}, 
+{
+ "frame_id":75, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-12-19__15-05-14(1).JPG", 
+ "objects": [ 
+  {"class_id":2, "name":"baboon", "relative_coordinates":{"center_x":0.494566, "center_y":0.860766, "width":0.286791, "height":0.130570}, "confidence":0.997589}
+ ] 
+}, 
+{
+ "frame_id":76, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-18__11-39-02(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":77, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2021-03-07__16-07-26(3).JPG", 
+ "objects": [ 
+  {"class_id":25, "name":"kudu", "relative_coordinates":{"center_x":0.528002, "center_y":0.441694, "width":1.135898, "height":0.827400}, "confidence":0.855373}
+ ] 
+}, 
+{
+ "frame_id":78, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-15__05-28-32(3).JPG", 
+ "objects": [ 
+  {"class_id":2, "name":"baboon", "relative_coordinates":{"center_x":0.311672, "center_y":0.859200, "width":0.224698, "height":0.122460}, "confidence":0.996881}
+ ] 
+}, 
+{
+ "frame_id":79, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-08-09__11-14-50(3).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":80, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-07-23__14-38-26(2).JPG", 
+ "objects": [ 
+  {"class_id":20, "name":"human", "relative_coordinates":{"center_x":0.102552, "center_y":0.334598, "width":0.213571, "height":0.680651}, "confidence":0.906451}
+ ] 
+}, 
+{
+ "frame_id":81, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2021-02-20__03-59-54(3).JPG", 
+ "objects": [ 
+  {"class_id":7, "name":"bushpig", "relative_coordinates":{"center_x":0.748005, "center_y":0.797197, "width":0.186072, "height":0.193947}, "confidence":0.686476}
+ ] 
+}, 
+{
+ "frame_id":82, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-22__11-53-08(3).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":83, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-03__23-47-18(3).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":84, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-07__19-18-32(2).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":85, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-07-23__16-13-00(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":86, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-09__01-26-26(2).JPG", 
+ "objects": [ 
+  {"class_id":42, "name":"small_antelope", "relative_coordinates":{"center_x":0.240347, "center_y":0.851833, "width":0.271282, "height":0.148828}, "confidence":0.981480}
+ ] 
+}, 
+{
+ "frame_id":87, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-19__02-25-12(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":88, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-09-04__11-28-46(2).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":89, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-07-27__07-00-00(2).JPG", 
+ "objects": [ 
+  {"class_id":39, "name":"warthog", "relative_coordinates":{"center_x":0.126732, "center_y":0.759507, "width":0.261432, "height":0.206033}, "confidence":0.997362}
+ ] 
+}, 
+{
+ "frame_id":90, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-15__05-40-22(3).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":91, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-26__19-35-46(2).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":92, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-09__09-10-26(2).JPG", 
+ "objects": [ 
+  {"class_id":4, "name":"buffalo", "relative_coordinates":{"center_x":0.557498, "center_y":0.782347, "width":0.769292, "height":0.282217}, "confidence":0.808975}
+ ] 
+}, 
+{
+ "frame_id":93, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-08-15__04-24-04(3).JPG", 
+ "objects": [ 
+  {"class_id":35, "name":"sable", "relative_coordinates":{"center_x":0.161300, "center_y":0.686240, "width":0.324475, "height":0.311317}, "confidence":0.987210}
+ ] 
+}, 
+{
+ "frame_id":94, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-07-26__12-16-26(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":95, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-23__21-06-50(1).JPG", 
+ "objects": [ 
+  {"class_id":0, "name":"elephant", "relative_coordinates":{"center_x":0.043560, "center_y":0.593609, "width":0.087430, "height":0.334998}, "confidence":0.966781}
+ ] 
+}, 
+{
+ "frame_id":96, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-09-26__10-13-52(3).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":97, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-07-23__15-05-18(3).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":98, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-15__05-44-26(2).JPG", 
+ "objects": [ 
+  {"class_id":2, "name":"baboon", "relative_coordinates":{"center_x":0.530165, "center_y":0.863919, "width":0.264679, "height":0.125020}, "confidence":0.983253}
+ ] 
+}, 
+{
+ "frame_id":99, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-31__20-15-04(1).JPG", 
+ "objects": [ 
+  {"class_id":42, "name":"small_antelope", "relative_coordinates":{"center_x":0.633248, "center_y":0.878034, "width":0.245796, "height":0.099593}, "confidence":0.966397}
+ ] 
+}, 
+{
+ "frame_id":100, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-04__07-10-26(1).JPG", 
+ "objects": [ 
+  {"class_id":0, "name":"elephant", "relative_coordinates":{"center_x":0.841891, "center_y":0.645688, "width":0.320649, "height":0.568128}, "confidence":0.958119}
+ ] 
+}, 
+{
+ "frame_id":101, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-23__12-09-28(3).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":102, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-12-04__19-30-50(3).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":103, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-15__05-42-22(3).JPG", 
+ "objects": [ 
+  {"class_id":2, "name":"baboon", "relative_coordinates":{"center_x":0.842877, "center_y":0.887495, "width":0.145824, "height":0.074378}, "confidence":0.974444}
+ ] 
+}, 
+{
+ "frame_id":104, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2021-02-08__15-07-54(3).JPG", 
+ "objects": [ 
+  {"class_id":25, "name":"kudu", "relative_coordinates":{"center_x":0.214920, "center_y":0.683949, "width":0.433940, "height":0.355469}, "confidence":0.994125}
+ ] 
+}, 
+{
+ "frame_id":105, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-08-23__01-46-36(1).JPG", 
+ "objects": [ 
+  {"class_id":0, "name":"elephant", "relative_coordinates":{"center_x":0.098552, "center_y":0.431358, "width":0.204893, "height":0.846290}, "confidence":0.897717}
+ ] 
+}, 
+{
+ "frame_id":106, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-07-23__14-37-48(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":107, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-25__10-48-46(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":108, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-12-04__02-48-58(2).JPG", 
+ "objects": [ 
+  {"class_id":35, "name":"sable", "relative_coordinates":{"center_x":0.394089, "center_y":0.602681, "width":0.141651, "height":0.207542}, "confidence":0.732519}
+ ] 
+}, 
+{
+ "frame_id":109, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-08-19__13-26-56(2).JPG", 
+ "objects": [ 
+  {"class_id":25, "name":"kudu", "relative_coordinates":{"center_x":0.397402, "center_y":0.732179, "width":0.710037, "height":0.336864}, "confidence":0.957645}, 
+  {"class_id":4, "name":"buffalo", "relative_coordinates":{"center_x":0.789337, "center_y":0.579781, "width":0.179507, "height":0.151912}, "confidence":0.857487}
+ ] 
+}, 
+{
+ "frame_id":110, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-06__08-56-56(3).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":111, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-08-10__02-35-34(3).JPG", 
+ "objects": [ 
+  {"class_id":42, "name":"small_antelope", "relative_coordinates":{"center_x":0.593041, "center_y":0.852193, "width":0.265760, "height":0.161937}, "confidence":0.988506}
+ ] 
+}, 
+{
+ "frame_id":112, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-07-23__14-36-46(3).JPG", 
+ "objects": [ 
+  {"class_id":20, "name":"human", "relative_coordinates":{"center_x":0.161564, "center_y":0.431549, "width":0.338334, "height":0.869527}, "confidence":0.944066}
+ ] 
+}, 
+{
+ "frame_id":113, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-09__09-04-52(2).JPG", 
+ "objects": [ 
+  {"class_id":4, "name":"buffalo", "relative_coordinates":{"center_x":0.634440, "center_y":0.762002, "width":0.745538, "height":0.290054}, "confidence":0.926409}
+ ] 
+}, 
+{
+ "frame_id":114, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-09-24__21-12-00(1).JPG", 
+ "objects": [ 
+  {"class_id":42, "name":"small_antelope", "relative_coordinates":{"center_x":0.739918, "center_y":0.854787, "width":0.241512, "height":0.153208}, "confidence":0.989611}
+ ] 
+}, 
+{
+ "frame_id":115, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-07-23__15-06-26(2).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":116, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-28__08-57-00(1).JPG", 
+ "objects": [ 
+  {"class_id":12, "name":"eland", "relative_coordinates":{"center_x":0.702915, "center_y":0.653741, "width":0.581821, "height":0.542897}, "confidence":0.964926}
+ ] 
+}, 
+{
+ "frame_id":117, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-18__11-39-02(3).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":118, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-03__23-45-58(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":119, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-12-19__15-05-14(3).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":120, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-09-21__14-13-28(2).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":121, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2021-03-07__16-07-26(1).JPG", 
+ "objects": [ 
+  {"class_id":12, "name":"eland", "relative_coordinates":{"center_x":0.683565, "center_y":0.665342, "width":0.596168, "height":0.515783}, "confidence":0.495179}, 
+  {"class_id":4, "name":"buffalo", "relative_coordinates":{"center_x":0.708290, "center_y":0.662841, "width":0.618054, "height":0.521110}, "confidence":0.740557}
+ ] 
+}, 
+{
+ "frame_id":122, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-12-22__16-34-30(2).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":123, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-08-09__11-14-50(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":124, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-08-15__04-22-54(2).JPG", 
+ "objects": [ 
+  {"class_id":35, "name":"sable", "relative_coordinates":{"center_x":0.471600, "center_y":0.627217, "width":0.709955, "height":0.598764}, "confidence":0.989829}
+ ] 
+}, 
+{
+ "frame_id":125, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-15__05-28-32(1).JPG", 
+ "objects": [ 
+  {"class_id":2, "name":"baboon", "relative_coordinates":{"center_x":0.642820, "center_y":0.839037, "width":0.189834, "height":0.167122}, "confidence":0.998849}, 
+  {"class_id":2, "name":"baboon", "relative_coordinates":{"center_x":0.442776, "center_y":0.724818, "width":0.099475, "height":0.132050}, "confidence":0.848032}
+ ] 
+}, 
+{
+ "frame_id":126, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2021-02-20__03-59-54(1).JPG", 
+ "objects": [ 
+  {"class_id":35, "name":"sable", "relative_coordinates":{"center_x":0.503671, "center_y":0.757819, "width":0.268110, "height":0.336276}, "confidence":0.981697}
+ ] 
+}, 
+{
+ "frame_id":127, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-07-23__16-13-00(3).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":128, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-19__02-25-12(3).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":129, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-08-05__11-37-50(2).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":130, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-03__23-47-18(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":131, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-22__11-53-08(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":132, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-08-10__02-35-34(2).JPG", 
+ "objects": [ 
+  {"class_id":42, "name":"small_antelope", "relative_coordinates":{"center_x":0.607013, "center_y":0.829744, "width":0.252252, "height":0.198543}, "confidence":0.991460}
+ ] 
+}, 
+{
+ "frame_id":133, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-09__09-04-52(3).JPG", 
+ "objects": [ 
+  {"class_id":4, "name":"buffalo", "relative_coordinates":{"center_x":0.807069, "center_y":0.755243, "width":0.393213, "height":0.316805}, "confidence":0.978234}
+ ] 
+}, 
+{
+ "frame_id":134, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-08-19__13-26-58(1).JPG", 
+ "objects": [ 
+  {"class_id":25, "name":"kudu", "relative_coordinates":{"center_x":0.593589, "center_y":0.717923, "width":0.804681, "height":0.414043}, "confidence":0.984306}
+ ] 
+}, 
+{
+ "frame_id":135, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-07-23__15-06-26(3).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":136, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2021-02-08__15-05-26(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":137, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-07-23__14-36-46(2).JPG", 
+ "objects": [ 
+  {"class_id":20, "name":"human", "relative_coordinates":{"center_x":0.264644, "center_y":0.439202, "width":0.524698, "height":0.859437}, "confidence":0.962919}
+ ] 
+}, 
+{
+ "frame_id":138, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-07-23__14-49-32(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":139, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-07-23__16-18-34(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":140, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-22__03-24-30(2).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":141, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-18__11-39-02(2).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":142, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-09-21__14-13-28(3).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":143, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-12-19__15-05-14(2).JPG", 
+ "objects": [ 
+  {"class_id":2, "name":"baboon", "relative_coordinates":{"center_x":0.317588, "center_y":0.870898, "width":0.315355, "height":0.108628}, "confidence":0.993120}
+ ] 
+}, 
+{
+ "frame_id":144, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-12-22__16-34-30(3).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":145, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-08-15__04-22-54(3).JPG", 
+ "objects": [ 
+  {"class_id":35, "name":"sable", "relative_coordinates":{"center_x":0.715401, "center_y":0.639393, "width":0.581052, "height":0.553446}, "confidence":0.996088}
+ ] 
+}, 
+{
+ "frame_id":146, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-07-23__14-38-26(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":147, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-12-19__18-34-10(1).JPG", 
+ "objects": [ 
+  {"class_id":7, "name":"bushpig", "relative_coordinates":{"center_x":0.471052, "center_y":0.831614, "width":0.149918, "height":0.135922}, "confidence":0.541158}
+ ] 
+}, 
+{
+ "frame_id":148, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-19__02-25-12(2).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":149, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-07-23__16-13-00(2).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":150, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-09__01-26-26(1).JPG", 
+ "objects": [ 
+  {"class_id":42, "name":"small_antelope", "relative_coordinates":{"center_x":0.439589, "center_y":0.842570, "width":0.290539, "height":0.169919}, "confidence":0.989805}
+ ] 
+}, 
+{
+ "frame_id":151, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-07__19-18-32(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":152, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-07-27__07-00-00(3).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":153, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-06__12-05-44(2).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":154, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-09-04__11-28-46(3).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":155, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-09__09-10-26(3).JPG", 
+ "objects": [ 
+  {"class_id":4, "name":"buffalo", "relative_coordinates":{"center_x":0.598129, "center_y":0.784630, "width":0.758580, "height":0.281643}, "confidence":0.786028}
+ ] 
+}, 
+{
+ "frame_id":156, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-15__05-40-22(2).JPG", 
+ "objects": [ 
+  {"class_id":2, "name":"baboon", "relative_coordinates":{"center_x":0.244325, "center_y":0.897314, "width":0.280339, "height":0.055971}, "confidence":0.969895}
+ ] 
+}, 
+{
+ "frame_id":157, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-26__19-35-46(3).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":158, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-08-15__04-24-04(2).JPG", 
+ "objects": [ 
+  {"class_id":35, "name":"sable", "relative_coordinates":{"center_x":0.069973, "center_y":0.718816, "width":0.139087, "height":0.288938}, "confidence":0.652208}
+ ] 
+}, 
+{
+ "frame_id":159, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-08-05__11-37-48(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":160, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-09-26__10-13-52(2).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":161, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-07-23__15-05-18(2).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":162, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-15__05-44-26(3).JPG", 
+ "objects": [ 
+  {"class_id":2, "name":"baboon", "relative_coordinates":{"center_x":0.571672, "center_y":0.882020, "width":0.169100, "height":0.085996}, "confidence":0.976990}, 
+  {"class_id":2, "name":"baboon", "relative_coordinates":{"center_x":0.724452, "center_y":0.887208, "width":0.148710, "height":0.078796}, "confidence":0.955750}, 
+  {"class_id":2, "name":"baboon", "relative_coordinates":{"center_x":0.389404, "center_y":0.906369, "width":0.062512, "height":0.041963}, "confidence":0.493373}
+ ] 
+}, 
+{
+ "frame_id":163, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-08-26__10-57-34(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":164, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-10-09__09-15-12(1).JPG", 
+ "objects": [ 
+  {"class_id":4, "name":"buffalo", "relative_coordinates":{"center_x":0.505544, "center_y":0.788908, "width":0.711208, "height":0.253957}, "confidence":0.314513}
+ ] 
+}, 
+{
+ "frame_id":165, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-07-23__16-29-06(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":166, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2021-02-08__15-05-24(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":167, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2021-02-08__15-07-54(2).JPG", 
+ "objects": [ 
+  {"class_id":25, "name":"kudu", "relative_coordinates":{"center_x":0.200212, "center_y":0.705915, "width":0.407189, "height":0.328972}, "confidence":0.997761}
+ ] 
+}, 
+{
+ "frame_id":168, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-23__12-09-28(2).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":169, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-15__05-42-22(2).JPG", 
+ "objects": [ 
+  {"class_id":2, "name":"baboon", "relative_coordinates":{"center_x":0.660239, "center_y":0.881432, "width":0.164287, "height":0.090877}, "confidence":0.983183}
+ ] 
+}, 
+{
+ "frame_id":170, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-12-04__19-30-50(2).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":171, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-08-30__06-41-20(1).JPG", 
+ "objects": [ 
+  {"class_id":39, "name":"warthog", "relative_coordinates":{"center_x":0.743977, "center_y":0.812458, "width":0.202294, "height":0.175014}, "confidence":0.992581}
+ ] 
+}, 
+{
+ "frame_id":172, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-12-04__02-48-58(3).JPG", 
+ "objects": [ 
+  {"class_id":35, "name":"sable", "relative_coordinates":{"center_x":0.423412, "center_y":0.604314, "width":0.143996, "height":0.159497}, "confidence":0.855213}
+ ] 
+}, 
+{
+ "frame_id":173, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-06__08-56-56(2).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":174, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-11-17__11-56-10(1).JPG", 
+ "objects": [ 
+
+ ] 
+}, 
+{
+ "frame_id":175, 
+ "filename":"/nfs6/FW_HMSC/Levi_Lab/YOLO_photos/NWR_2022/P23/P23-C-2022-11-14/P23-C-2022-11-14__2020-12-19__18-34-12(1).JPG", 
+ "objects": [ 
+
+ ] 
+}
+]
