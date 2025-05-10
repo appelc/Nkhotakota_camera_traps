@@ -1,0 +1,863 @@
+---
+title: "NWR predicted counts"
+author: "Cara Appel"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    toc: true
+    toc_float: 
+      collapsed: false
+    toc_depth: 4
+    keep_md: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      fig.width = 8,     #figure width (can also use fig.asp for aspect, like 0.8)
+                      out.width = "90%", #figure output %
+                      dpi = 300) 
+```
+
+```{r load-packages, include=FALSE}
+library(data.table)
+library(tidyverse)
+library(ggplot2)
+library(scales)
+library(ggrepel)
+library(rphylopic)
+library(effects)
+library(patchwork)
+library(ggeffects)
+```
+
+
+### Comparing true vs. predicted counts of animals in camera trap images, using NWR YOLO model
+
+```{r prep, include=FALSE}
+# setwd('/Users/caraappel/Documents/_RESEARCH/YOLO/')
+
+## Read in data
+  sp_matches <- fread('/Users/caraappel/Documents/_RESEARCH/YOLO/Malawi_evaluating/results_073024/image_matches_073024.csv')
+  
+  #Read in species list and filter
+  species_keep <- fread('/Users/caraappel/Documents/_RESEARCH/YOLO/Malawi_evaluating/species_for_metrics.csv',
+                        header = FALSE)
+  sp_matches <- sp_matches %>% filter(class_ref %in% species_keep$V2)
+  
+  #Keep true positives only
+  table(sp_matches$match, useNA = 'a')
+  sp_matches_TP <- sp_matches[sp_matches$match == 'TP',]
+  
+  #Keep images with 1 species only for this comparison
+  sp_per_img <- sp_matches_TP %>% group_by(filename) %>% summarise(n_species = length(unique(class_ref)))
+  img_mult_sp <- unique(sp_per_img[sp_per_img$n_species > 1,]$filename)
+  
+  sp_matches_TP <- sp_matches_TP[!sp_matches_TP$filename %in% img_mult_sp,]
+  
+  #For now also remove any image that has >1 row. This should be sorted out once I fix counts with >1 species in a prev step.
+  sp_matches_TP <- sp_matches_TP[!(duplicated(sp_matches_TP$filename, fromLast = TRUE) | duplicated(sp_matches_TP$filename, fromLast = FALSE))]
+  
+
+```
+
+```{r}
+
+#View data (true positives only)
+  head(sp_matches_TP[,-1])
+
+#Explore
+  hist(sp_matches_TP$count_true)
+  hist(sp_matches_TP$count_pred)
+
+```
+
+### Model 1: to test which classes have nonzero difference, and how much it is
+```{r}
+
+  #Calculate difference between true-pred
+  sp_matches_TP$diff <- sp_matches_TP$count_true - sp_matches_TP$count_pred
+    hist(sp_matches_TP$diff)
+
+  #Calculate proportional difference between pred/true
+  sp_matches_TP$pred_true <- sp_matches_TP$count_pred / sp_matches_TP$count_true
+    hist(sp_matches_TP$pred_true)
+  
+  #Run both models
+  mod1 <- lm(diff ~ -1 + class_true, data = sp_matches_TP) #additive
+  mod1b <- lm(pred_true ~ -1 + class_true, data = sp_matches_TP) #proportional
+    summary(mod1)
+    summary(mod1b)
+    
+  #Examine residuals
+  hist(resid(mod1),xlab='residuals',main='')
+  hist(resid(mod1b),xlab='residuals',main='')
+    
+    
+  # #weird that they're all 0-1? add a fake species with high counts to test...  
+  #   table(sp_matches_TP$diff)
+  #   fake_sp <- data.frame('class_true' = 'fake', 'diff' = round(rnorm(40, 10, 4)))
+  #   
+  #   sp_matches_TP <- rbind(sp_matches_TP, fake_sp, fill = TRUE)
+  #   
+  #   mod1 <- lm(diff ~ -1 + class_true, data = sp_matches_TP)
+  #     summary(mod1)
+
+```
+
+>Normal looks OK?  
+
+>Ref category here is aardvark, which is probably a good ref because they are all count = 1  
+
+>Significant and positive for:  
+baboon, buffalo, bushpig, eland, elephant, ground hornbill, guineafowl, human, kudu, porcupine, sable, vervet, warthog, waterbuck, zebra
+
+
+#### Plot coefficient estimates
+```{r, echo=FALSE}
+  
+  #store model results
+  mod1_sum <- summary(mod1)
+  coef <- data.frame(mod1_sum$coefficients)
+  colnames(coef) <- c('est','se','t_value','p_value')
+    #write.csv(coef, 'Malawi_evaluating/model_results_count_additive.csv')
+  
+  #store model results -- version 1b to look at proportional changes
+  mod1b_sum <- summary(mod1b)
+  coef1b <- data.frame(mod1b_sum$coefficients)
+  colnames(coef1b) <- c('est','se','t_value','p_value')
+    #write.csv(coef1b, 'Malawi_evaluating/model_results_count_proportional.csv')
+  
+  #extract class name and significance (based on p-value 0.05)
+  coef$class <- gsub('class_true', '', rownames(coef))
+  coef1b$class <- gsub('class_true', '', rownames(coef1b))
+  
+  coef$sig <- ifelse(coef$p_value <= 0.05, '*','')
+  
+  #convert SE to CI
+  coef$lci <- coef$est - (1.96 * coef$se)
+  coef$uci <- coef$est + (1.96 * coef$se)
+  
+  coef1b$lci <- coef1b$est - (1.96 * coef1b$se)
+  coef1b$uci <- coef1b$est + (1.96 * coef1b$se)
+  
+  #remove human (and dog? any others?)
+  coef <- coef[coef$class != 'human',]
+  coef1b <- coef1b[coef1b$class != 'human',]
+  
+  #edit class names
+  coef$class_mod <- ifelse(coef$class == 'guinea_fowl', 'guineafowl', coef$class)
+  coef$class_mod <- ifelse(coef$class == 'bush_squirrel', 'squirrel', coef$class_mod)
+  coef$class_mod <- ifelse(coef$class == 'scrub_hare', 'savanna_hare', coef$class_mod)
+  coef$class_mod <- gsub('_', ' ', coef$class_mod)
+  
+  coef1b$class_mod <- ifelse(coef1b$class == 'guinea_fowl', 'guineafowl', coef1b$class)
+  coef1b$class_mod <- ifelse(coef1b$class == 'bush_squirrel', 'squirrel', coef1b$class_mod)
+  coef1b$class_mod <- ifelse(coef1b$class == 'scrub_hare', 'savanna_hare', coef1b$class_mod)
+  coef1b$class_mod <- gsub('_', ' ', coef1b$class_mod)
+  
+  #summarize group sizes
+  group_size <- sp_matches_TP %>% group_by(class_true) %>% summarise(group_avg = mean(count_true),
+                                                                     group_median = median(count_true),
+                                                                     group_max = max(count_true))
+  group_size$class_mod <- ifelse(group_size$class_true == 'guinea_fowl', 'guineafowl', group_size$class_true)
+  group_size$class_mod <- ifelse(group_size$class_true == 'bush_squirrel', 'squirrel', group_size$class_mod)
+  group_size$class_mod <- ifelse(group_size$class_true == 'scrub_hare', 'savanna_hare', group_size$class_mod)
+  group_size$class_mod <- gsub('_', ' ', group_size$class_mod)
+  group_size <- group_size[group_size$class_true != 'human',]
+  
+  #add to coefficient dataframe
+  coef$max_group_size <- group_size$group_max[match(coef$class, group_size$class_true)]
+  coef$mean_group_size <- group_size$group_avg[match(coef$class, group_size$class_true)]
+    table(coef$max_group_size)
+    table(round(coef$mean_group_size)) #round or floor?
+  
+  coef$max_over_1 <- ifelse(coef$max_group_size > 1, 'y', 'n')
+  coef$mean_over_1 <- ifelse(coef$mean_group_size > 1, 'Groups > 1', 'Groups = 1') #these end up being the same
+  
+  coef1b$max_group_size <- group_size$group_max[match(coef1b$class, group_size$class_true)]
+  coef1b$mean_group_size <- group_size$group_avg[match(coef1b$class, group_size$class_true)]
+  table(coef1b$max_group_size)
+  table(round(coef1b$mean_group_size)) #round or floor?
+  
+  coef1b$max_over_1 <- ifelse(coef1b$max_group_size > 1, 'y', 'n')
+  coef1b$mean_over_1 <- ifelse(coef1b$mean_group_size > 1, 'Groups > 1', 'Groups = 1') #these end up being the same
+  
+  #add to group size dataframe to match facets
+  group_size$mean_over_1 <- ifelse(group_size$group_avg > 1, 'Groups > 1', 'Groups = 1') 
+  
+  #set breaks for legends
+  breaks_vector <- c(1,10,19)
+  
+  #merge additive and proportional for sorting
+  coef$est_mod1b <- coef1b$est[match(coef$class_mod, coef1b$class_mod)]
+  coef1b$est_mod1 <- coef$est[match(coef1b$class_mod, coef$class_mod)]
+  
+  
+  ## plot (additive)
+  mod1_plot <- ggplot(coef, aes(x = reorder(class_mod, est_mod1b), y = est, 
+                                size = max_group_size, color = max_group_size)) + #change mean or max here
+    geom_pointrange(aes(ymin = lci, ymax = uci)) +
+    geom_point() +
+    scale_y_continuous(breaks = c(0,0.25,0.5,0.75,1), limits = c(-0.28,1.1)) +
+    scale_x_discrete(expand = expansion(add = c(1, 1))) +
+    scale_size_continuous(range = c(0.4,1.5), breaks = breaks_vector) +
+    scale_color_viridis_c(option = 'D', breaks = breaks_vector) +
+    guides(color = guide_legend('Group size (max)'), size = guide_legend('Group size (max)')) +
+    coord_flip() +
+    ggtitle('True - Predicted') +
+    geom_hline(yintercept = 0, lty = 'dashed') +
+    # geom_text(aes(label = sig), hjust = -3, vjust = 0.8, size = 10, color = 'red') +
+    ylab('Additive change ± 95% CI') +
+    theme_bw() + theme(axis.title.y = element_blank(),
+                       axis.text = element_text(size = 12),
+                       legend.position = 'inside',
+                       legend.background = element_rect(fill = 'transparent'),
+                       legend.title = element_text(size = 12, face = 'bold'),
+                       legend.justification = c(0.9, 0.9),
+                       legend.text = element_text(size = 12))
+  mod1_plot
+    ggsave('figures/count_model_est_diff_mean.png', mod1_plot, dpi = 1000, width = 5, height = 6)
+    ggsave('figures/count_model_est_diff_max.png', mod1_plot, dpi = 1000, width = 5, height = 6)
+
+    
+  ## plot (proportional) 
+  mod1_plot_prop <- ggplot(coef1b, aes(x = reorder(class_mod, est), y = est, 
+                                       size = max_group_size, color = max_group_size)) +
+    geom_pointrange(aes(ymin = lci, ymax = uci)) +
+    geom_point() +
+    # scale_y_continuous(breaks = c(0,0.25,0.5,0.75,1), limits = c(,1.1)) +
+    scale_x_discrete(expand = expansion(add = c(1.1, 1))) +
+    scale_size_continuous(range = c(0.4,1.5), breaks = breaks_vector) +
+    scale_color_viridis_c(option = 'D', breaks = breaks_vector) +
+    guides(color = guide_legend('Group size (max)'), size = guide_legend('Group size (max)')) +
+    # guides(color = guide_colorbar(title = 'Group size (max)', breaks = breaks_vector),
+    #        size = guide_legend(title = 'Group size (max)', breaks = breaks_vector)) +
+    coord_flip() +
+    ggtitle('Predicted/True') +
+    geom_hline(yintercept = 1, lty = 'dashed') +
+    ylab('Proportional change ± 95% CI') +
+    theme_bw() + theme(axis.title.y = element_blank(),
+                       axis.text = element_text(size = 12),
+                       legend.position = 'none',
+                       # legend.position = 'inside',
+                       legend.background = element_rect(fill = 'transparent'),
+                       legend.justification = c(0.05, 1),
+                       legend.title = element_text(size = 12, face = 'bold'),
+                       legend.text = element_text(size = 12))
+  mod1_plot_prop
+    ggsave('figures/count_model_est_prop_mean.png', mod1_plot_prop, dpi = 1000, width = 5, height = 6)
+    ggsave('figures/count_model_est_prop_max.png', mod1_plot_prop, dpi = 1000, width = 5, height = 6)
+  
+    
+  ## plot (proportional): 1 - est
+  mod1_plot_prop_minus <- ggplot(coef1b, aes(x = reorder(class_mod, est), y = 1-est, 
+                                       size = mean_group_size, color = mean_group_size)) +
+    geom_pointrange(aes(ymin = 1-lci, ymax = 1-uci)) +
+    geom_point() +
+    # scale_y_continuous(breaks = c(0,0.25,0.5,0.75,1), limits = c(,1.1)) +
+    scale_x_discrete(expand = expansion(add = c(1.1, 1))) +
+    scale_size_continuous(range = c(0.4,1.5)) + #previously 0.5, 2
+    coord_flip() +
+    ggtitle('1 - (Predicted/True)') +
+    geom_hline(yintercept = 0, lty = 'dashed') +
+    ylab('1 - Proportional change in count ± 95% CI') +
+    theme_bw() + theme(axis.title.y = element_blank(),
+                       axis.text = element_text(size = 12),
+                       legend.position = 'none',
+                       legend.justification = c(0.9, 0.9))
+  mod1_plot_prop_minus
+    ggsave('figures/count_model_est_prop-1_mean.png', mod1_plot_prop_minus, dpi = 1000, width = 5, height = 6)
+    ggsave('figures/count_model_est_prop-1_max.png', mod1_plot_prop_minus, dpi = 1000, width = 5, height = 6)
+  
+    
+# ##### Old:
+#   #plot -- reorder by group size (max or mean?)
+#     mod1_plot_groups_1 <- ggplot(coef, aes(x = reorder(class_mod, -mean_group_size), y = est)) + #[coef$class != '(Intercept)',]
+#       geom_pointrange(aes(ymin = lci, ymax = uci)) +
+#       geom_point() +
+#       # scale_y_continuous(breaks = c(0,0.25,0.5,0.75,1), limits = c(-0.28,1.1)) +
+#       coord_flip() +
+#       geom_hline(yintercept = 0, lty = 'dashed') +
+#       # geom_text(aes(label = sig), hjust = -3, vjust = 0.8, size = 10, color = 'red') +
+#       ylab('Estimate ± 95% CI') +
+#       theme_bw() + theme(axis.title.y = element_blank(),
+#                          axis.text = element_text(size = 12))
+#     mod1_plot_groups_1
+#     
+#   #facet by group size
+#     mod1_plot_groups_2 <- ggplot(coef, aes(x = reorder(class_mod, -max_group_size), y = est)) + #change to class_true but must also change group_size
+#        geom_pointrange(aes(ymin = lci, ymax = uci)) +
+#       geom_point() +
+#       # scale_y_continuous(breaks = c(0,0.25,0.5,0.75,1), limits = c(-0.28,1.1)) +
+#       coord_flip() +
+#       geom_hline(yintercept = 0, lty = 'dashed') +
+#       # geom_text(aes(label = sig), hjust = -3, vjust = 0.8, size = 10, color = 'red') +
+#       ylab('Estimate ± 95% CI') +
+#       # xlab() +
+#       facet_grid(rows = vars(mean_over_1), scales = 'free_y', space = 'free') +
+#       theme_bw() + theme(
+#                          axis.title.y = element_blank(),
+#                          axis.text = element_text(size = 12),
+#                          strip.placement = 'outside',
+#                          strip.text.y = element_text(angle = 0, size = 12))
+#     mod1_plot_groups_2
+#     ggsave('figures/count_model_est_2.png', mod1_plot_groups_2, dpi = 1000, width = 5, height = 6)
+#     
+#     #show group size bars
+#     mod1_plot_groups_3 <- ggplot(coef, aes(x = reorder(class_mod, -est), y = est)) + #change to class_true but must also change group_size
+#       geom_tile(data = group_size, aes(y = 0, x = class_mod, width = 0.9, height = (group_max / max(group_max))),
+#                 fill = 'lightblue', color = 'black', alpha = 0.5) +
+#       geom_pointrange(aes(ymin = lci, ymax = uci)) +
+#       geom_point() +
+#       # scale_y_continuous(breaks = c(0,0.25,0.5,0.75,1), limits = c(-0.28,1.1)) +
+#       coord_flip() +
+#       geom_hline(yintercept = 0, lty = 'dashed') +
+#       # geom_text(aes(label = sig), hjust = -3, vjust = 0.8, size = 10, color = 'red') +
+#       ylab('Estimate ± 95% CI') +
+#       # xlab() +
+#       # facet_grid(rows = vars(mean_over_1), scales = 'free_y', space = 'free') +
+#       theme_bw() + theme(
+#         axis.title.y = element_blank(),
+#         axis.text = element_text(size = 12),
+#         strip.placement = 'outside',
+#         strip.text.y = element_text(angle = 0, size = 12))
+#     mod1_plot_groups_3
+#     ggsave('figures/count_model_est_3.png', mod1_plot_groups_3, dpi = 1000, width = 5, height = 6)
+#   
+#   
+#     #show group size bars a different way
+#     mod1_plot_groups_4 <- ggplot(coef, aes(x = reorder(class_mod, -est), y = est)) + #change to class_true but must also change group_size
+#       # geom_tile(data = group_size, aes(y = 0, x = class_mod, width = 0.9, height = (group_max / max(group_max))),
+#       #           fill = 'lightblue', color = 'black', alpha = 0.5) +
+#       geom_pointrange(aes(ymin = lci, ymax = uci)) +
+#       geom_point() +
+#       # scale_y_continuous(breaks = c(0,0.25,0.5,0.75,1), limits = c(-0.28,1.1)) +
+#       coord_flip() +
+#       geom_hline(yintercept = 0, lty = 'dashed') +
+#       # geom_text(aes(label = sig), hjust = -3, vjust = 0.8, size = 10, color = 'red') +
+#       ylab('Estimate ± 95% CI') +
+#       # xlab() +
+#       # facet_grid(rows = vars(mean_over_1), scales = 'free_y', space = 'free') +
+#       theme_bw() + theme(
+#         axis.title.y = element_blank(),
+#         axis.text.y = element_text(hjust = 0.5),
+#         axis.text = element_text(size = 12),
+#         strip.placement = 'outside',
+#         strip.text.y = element_text(angle = 0, size = 12))
+#     mod1_plot_groups_4
+#     
+#     mod1_plot_groups_4_bar <- ggplot(coef, aes(x = reorder(class_mod, -est), y = max_group_size)) +
+#       geom_bar(stat = 'identity') +
+#       scale_y_reverse() +
+#       coord_flip() +
+#       ylab('Group size (max)') +
+#       theme_bw() + theme(
+#         axis.title.y = element_blank(),
+#         axis.text.y = element_blank(),
+#         axis.text = element_text(size = 12),
+#         strip.placement = 'outside',
+#         strip.text.y = element_text(angle = 0, size = 12))
+#     mod1_plot_groups_4_bar
+#     
+#     (mod1_plot_groups_4 | mod1_plot_groups_4_bar) + plot_layout(widths = c(2, 1))
+#     plot4 <- (mod1_plot_groups_4_bar | mod1_plot_groups_4) + plot_layout(widths = c(1, 2))
+#     plot4
+#     
+#     ggsave('figures/count_model_est_4.png', plot4, dpi = 1000, width = 5, height = 6)
+    
+    
+```
+
+>Intercept here can be interpreted as aardvark, correct?
+  
+>Effect sizes will essentially be the same... intercept is -1.675e-13 
+
+>Because diff = true - predicted, estimate > 0 means the model *under-counted*
+
+
+#### Plot individual species histograms for gut check
+```{r}
+  
+  par(mfrow = c(2,2))
+  for (sp in unique(sp_matches_TP$class_true)){
+    hist(sp_matches_TP[sp_matches_TP$class_true == sp,]$diff, main=sp, xlab='diff')
+  }
+```
+
+--------------------------------------------------------------------------------
+
+  
+### Model 2: how much higher is the true count for each increase in predicted count?
+```{r}
+
+  mod2 <- lm(count_true ~ -1 + count_pred:class_true, data = sp_matches_TP)
+    summary(mod2)
+    
+    hist(resid(mod2), xlab = 'residuals', main='')
+    
+    #store model results
+    mod2_sum <- summary(mod2)
+    coef2 <- data.frame(mod2_sum$coefficients)
+      write.csv(coef2, 'Malawi_evaluating/model_results_count_interaction.csv')
+      
+    #test
+    mod2_effects <- allEffects(mod2, xlevels = list(count_pred = c(1:max(group_size$group_max))))
+    mod2_df <- data.frame(mod2_effects$`count_pred:class_true`)
+    
+```
+
+>Normal looks OK?  
+
+#### Predict values for plotting  
+```{r}
+
+  #generate new data for predictions (only go to max group size for each class)
+  newdata <- group_size %>% group_by(class_true) %>% 
+    summarise(count_pred = list(1:max(group_max))) %>% #or group_max+3
+    unnest(cols = c(count_pred))
+  
+  #generate predictions (lm)    
+  mod2_pred <- predict.lm(mod2, newdata = newdata, se.fit = TRUE)
+  
+  #create dataframe and convert SE to CI
+  preds_df <- newdata %>% mutate(fit = mod2_pred$fit,
+                                 lowerSE = fit - mod2_pred$se.fit,
+                                 upperSE = fit + mod2_pred$se.fit,
+                                 lowerCI = fit - (1.96*mod2_pred$se.fit),
+                                 upperCI = fit + (1.96*mod2_pred$se.fit))
+```
+
+#### Plot (lm w/ normal distribution)
+```{r}    
+
+  #reorder classes for faceting
+
+  #remove human and change class names
+  preds_df <- preds_df[preds_df$class_true != 'human',]
+  sp_matches_TP <- sp_matches_TP[sp_matches_TP$class_true != 'human',]
+  
+  preds_df$class_mod <- ifelse(preds_df$class_true == 'ground_hornbill', 'ground hornbill', preds_df$class_true)
+  preds_df$class_mod <- ifelse(preds_df$class_true == 'bush_squirrel', 'squirrel', preds_df$class_mod)
+  preds_df$class_mod <- ifelse(preds_df$class_true == 'scrub_hare', 'savanna hare', preds_df$class_mod)
+  preds_df$class_mod <- ifelse(preds_df$class_true == 'guinea_fowl', 'guineafowl', preds_df$class_mod)
+  preds_df$class_mod <- gsub('_', ' ', preds_df$class_mod)
+  
+  sp_matches_TP$class_mod <- ifelse(sp_matches_TP$class_true == 'ground_hornbill', 'ground hornbill', sp_matches_TP$class_true)
+  sp_matches_TP$class_mod <- ifelse(sp_matches_TP$class_true == 'bush_squirrel', 'bush squirrel', sp_matches_TP$class_mod)
+  sp_matches_TP$class_mod <- ifelse(sp_matches_TP$class_true == 'scrub_hare', 'savanna hare', sp_matches_TP$class_mod)
+  sp_matches_TP$class_mod <- ifelse(sp_matches_TP$class_true == 'guinea_fowl', 'guineafowl', sp_matches_TP$class_mod)
+  sp_matches_TP$class_mod <- gsub('_', ' ', sp_matches_TP$class_mod)
+  
+  ## plot
+  mod2_plot <- ggplot(preds_df, 
+                      aes(x = count_pred, y = fit, color = class_mod, fill = class_mod)) +
+    geom_abline(slope = 1, intercept = 0, lty = 'dashed', lwd = 0.4, color = 'gray30') +
+    geom_ribbon(aes(ymin = lowerCI, ymax = upperCI), alpha = 0.4, color = NA) +
+    geom_line() +
+    geom_rug(data = sp_matches_TP, aes(y = count_true), inherit.aes = FALSE, length = unit(0.05, 'npc')) +
+    geom_rug(data = sp_matches_TP, aes(x = count_pred), inherit.aes = FALSE, length = unit(0.05, 'npc')) +
+    xlab('Predicted count') + ylab('True count') +
+    facet_wrap(~class_mod, nrow = 5) + #, scales = 'free'
+    theme_bw() + theme(legend.position = 'none')
+  mod2_plot
+  
+  
+  # #now facet by group size -- doesn't make sense to predict some out to 20!
+  
+  #by med, mean, max?
+  preds_df$max_group_size <- group_size$group_max[match(preds_df$class_true, group_size$class_true)]
+  table(preds_df$max_group_size)
+  
+  #also add group size to original dataframe for plotting rug values
+  sp_matches_TP$max_group_size <- group_size$group_max[match(sp_matches_TP$class_true, group_size$class_true)]
+  
+  #read in phylopic IDs
+  phylopic_ids <- fread('Malawi_evaluating/phylopic_ids.csv'); phylopic_ids <- phylopic_ids[,-'V1']
+  
+  #add coordinates for plotting (each has its own axis, helps to plot below first without)
+  phylopic_ids$x[phylopic_ids$species_cleaned == 'bushbuck'] <- 2.2
+  phylopic_ids$y[phylopic_ids$species_cleaned == 'bushbuck'] <- 0.5
+  phylopic_ids$height[phylopic_ids$species_cleaned == 'bushbuck'] <- 1
+  phylopic_ids$x[phylopic_ids$species_cleaned == 'small antelope'] <- 2.2
+  phylopic_ids$y[phylopic_ids$species_cleaned == 'small antelope'] <- 0.5
+  phylopic_ids$height[phylopic_ids$species_cleaned == 'small antelope'] <- 1
+  phylopic_ids$x[phylopic_ids$species_cleaned == 'reedbuck'] <- 2.2
+  phylopic_ids$y[phylopic_ids$species_cleaned == 'reedbuck'] <- 0.5
+  phylopic_ids$height[phylopic_ids$species_cleaned == 'reedbuck'] <- 1.1
+  phylopic_ids$x[phylopic_ids$species_cleaned == 'porcupine'] <- 2.5
+  phylopic_ids$y[phylopic_ids$species_cleaned == 'porcupine'] <- 0.5
+  phylopic_ids$height[phylopic_ids$species_cleaned == 'porcupine'] <- 1
+  phylopic_ids$x[phylopic_ids$species_cleaned == 'ground hornbill'] <- 2.5
+  phylopic_ids$y[phylopic_ids$species_cleaned == 'ground hornbill'] <- 0.5
+  phylopic_ids$height[phylopic_ids$species_cleaned == 'ground hornbill'] <- 1
+  phylopic_ids$x[phylopic_ids$species_cleaned == 'impala'] <- 2.2
+  phylopic_ids$y[phylopic_ids$species_cleaned == 'impala'] <- 0.5
+  phylopic_ids$height[phylopic_ids$species_cleaned == 'impala'] <- 1.2
+  phylopic_ids$x[phylopic_ids$species_cleaned == 'bushpig'] <- 4.5
+  phylopic_ids$y[phylopic_ids$species_cleaned == 'bushpig'] <- 1
+  phylopic_ids$height[phylopic_ids$species_cleaned == 'bushpig'] <- 1.2
+  phylopic_ids$x[phylopic_ids$species_cleaned == 'kudu'] <- 5
+  phylopic_ids$y[phylopic_ids$species_cleaned == 'kudu'] <- 1.5
+  phylopic_ids$height[phylopic_ids$species_cleaned == 'kudu'] <- 3
+  phylopic_ids$x[phylopic_ids$species_cleaned == 'elephant'] <- 4.5
+  phylopic_ids$y[phylopic_ids$species_cleaned == 'elephant'] <- 1.5
+  phylopic_ids$height[phylopic_ids$species_cleaned == 'elephant'] <- 2
+  phylopic_ids$x[phylopic_ids$species_cleaned == 'zebra'] <- 4.5
+  phylopic_ids$y[phylopic_ids$species_cleaned == 'zebra'] <- 1.5
+  phylopic_ids$height[phylopic_ids$species_cleaned == 'zebra'] <- 1.9
+  phylopic_ids$x[phylopic_ids$species_cleaned == 'waterbuck'] <- 5.2
+  phylopic_ids$y[phylopic_ids$species_cleaned == 'waterbuck'] <- 1.5
+  phylopic_ids$height[phylopic_ids$species_cleaned == 'waterbuck'] <- 3.2
+  phylopic_ids$x[phylopic_ids$species_cleaned == 'eland'] <- 4.5
+  phylopic_ids$y[phylopic_ids$species_cleaned == 'eland'] <- 1.5
+  phylopic_ids$height[phylopic_ids$species_cleaned == 'eland'] <- 3.2
+  phylopic_ids$x[phylopic_ids$species_cleaned == 'vervet monkey'] <- 6
+  phylopic_ids$y[phylopic_ids$species_cleaned == 'vervet monkey'] <- 1.5
+  phylopic_ids$height[phylopic_ids$species_cleaned == 'vervet monkey'] <- 3
+  phylopic_ids$x[phylopic_ids$species_cleaned == 'warthog'] <- 6.5
+  phylopic_ids$y[phylopic_ids$species_cleaned == 'warthog'] <- 1.5
+  phylopic_ids$height[phylopic_ids$species_cleaned == 'warthog'] <- 3
+  phylopic_ids$x[phylopic_ids$species_cleaned == 'buffalo'] <- 6
+  phylopic_ids$y[phylopic_ids$species_cleaned == 'buffalo'] <- 1.5
+  phylopic_ids$height[phylopic_ids$species_cleaned == 'buffalo'] <- 7
+  phylopic_ids$x[phylopic_ids$species_cleaned == 'baboon'] <- 9
+  phylopic_ids$y[phylopic_ids$species_cleaned == 'baboon'] <- 2
+  phylopic_ids$height[phylopic_ids$species_cleaned == 'baboon'] <- 4
+  phylopic_ids$x[phylopic_ids$species_cleaned == 'guineafowl'] <- 8
+  phylopic_ids$y[phylopic_ids$species_cleaned == 'guineafowl'] <- 2
+  phylopic_ids$height[phylopic_ids$species_cleaned == 'guineafowl'] <- 4
+  phylopic_ids$x[phylopic_ids$species_cleaned == 'sable'] <- 14
+  phylopic_ids$y[phylopic_ids$species_cleaned == 'sable'] <- 5
+  phylopic_ids$height[phylopic_ids$species_cleaned == 'sable'] <-100
+  
+  #merge phylopic IDs with data
+  preds_df_plot <- preds_df %>% left_join(phylopic_ids, by = c('class_mod' = 'species_cleaned'))
+  
+  #sort facets by estimates to match prev figure
+  preds_df_plot <- preds_df_plot %>% mutate(class_mod_sort = reorder(class_mod, fit)) #this isn't right... reorder by group size, below
+  sp_matches_TP$class_mod_sort <- factor(sp_matches_TP$class_mod, levels = levels(preds_df_plot$class_mod_sort)) #to match
+  
+  ## plot only for ones with observed > 2
+  mod2_plot_a <- ggplot(preds_df_plot[preds_df_plot$max_group_size > 2,], 
+                        aes(x = count_pred, y = fit, color = max_group_size, fill = max_group_size)) + #or use class_mod for color/fill
+    geom_abline(slope = 1, intercept = 0, lty = 'dashed', lwd = 0.4, color = 'gray40') +
+    geom_ribbon(aes(ymin = lowerCI, ymax = upperCI), alpha = 0.3, color = NA) +
+    geom_line(lwd = 1.1) + 
+    geom_phylopic(aes(x = x, y = y, uuid = id, height = height), fill = 'black', color = NA) +
+    scale_height_continuous(range = c(1,10)) +
+    # coord_cartesian(xlim = c(0,20), ylim = c(0,20)) +
+    coord_cartesian(clip = 'off') +
+    geom_rug(data = sp_matches_TP[sp_matches_TP$max_group_size > 2,],
+             aes(y = count_true, x = 0, color = max_group_size), inherit.aes = FALSE, length = unit(0.04, 'npc'),
+             sides = 'l', position = position_jitter(height = 0.3)) +
+    geom_rug(data = sp_matches_TP[sp_matches_TP$max_group_size > 2,],
+             aes(x = count_pred, y = 0, color = max_group_size), inherit.aes = FALSE, length = unit(0.07, 'npc'),
+             sides = 'b', position = position_jitter(width = 0.3)) +
+    scale_color_viridis_c(option = 'D') +
+    scale_fill_viridis_c(option = 'D') +
+    xlab('Predicted count') + ylab('True count (± 95% CI)') +
+    # facet_wrap(~class_mod_sort, nrow = 3, scales = 'free') + #nrow = 3 or 6
+    facet_wrap(~reorder(class_mod, max_group_size), nrow = 3, scales = 'free') + #nrow = 3 or 6
+    theme_bw() + theme(legend.position = 'none',
+                       strip.background = element_blank(),
+                       strip.placement = 'outside',
+                       strip.text = element_text(size = 10), 
+                       axis.title = element_text(size = 12))
+  mod2_plot_a
+  #ggsave('figures/count_model_predictions_over2.png', mod2_plot_a, dpi = 1000, width = 5, height = 6)
+  
+  fig6 <- ((mod1_plot_prop + theme(plot.title = element_blank())) | mod2_plot_a) + plot_layout(widths = c(1, 2))
+  fig6
+  
+  #ggsave('figures/count_model_panel.png', fig6, dpi = 1000, width = 9.5, height = 7.5)
+  
+  
+  fig6b <- ((mod1_plot + theme(plot.title = element_blank())) | (mod1_plot_prop + theme(plot.title = element_blank()))) / 
+    mod2_plot_a
+  fig6b
+  # ggsave('figures/count_model_panel3.png', fig6c, dpi = 1000, width = 9, height = 10)
+  
+  
+  fig6c <- ((mod1_plot_prop + theme(plot.title = element_blank(),
+                                    axis.text.y = element_blank(),
+                                    axis.ticks.y.left = element_blank(),
+                                    axis.ticks.y.right = element_line(linewidth = 2))) | (mod1_plot + theme(plot.title = element_blank(),
+                                                                                                            axis.text.y = element_text(hjust = 0.5)))) / 
+    mod2_plot_a +
+    plot_annotation(tag_levels = 'A') & 
+    theme(plot.tag = element_text(face = 'bold', size = 16)) #plot.tag.position = c(0.05, 0.95)
+  fig6c
+  
+  ggsave('figures/count_model_panel3_e.png', fig6c, dpi = 1000, width = 9, height = 10)
+  
+```
+  
+>But the response variable is count, so try Poisson  
+
+
+### Model 2b: how much higher is the true count for each increase in predicted count? (GLM with Poisson)
+```
+
+  #only use species with max group size > 2
+  (sp_gr2 <- unique(group_size[group_size$group_max > 2,]$class_true))
+  sp_matches_TP_gr2 <- sp_matches_TP[sp_matches_TP$class_true %in% sp_gr2,]
+
+  #convert classes to factor
+  sp_matches_TP_gr2$class_true <- as.factor(sp_matches_TP_gr2$class_true)
+  
+  #Poisson model
+  #use quasi-poisson to relax mean=variance assumption (for p-values only)
+  mod2p <- glm(count_true ~ log(count_pred)*class_true, data = sp_matches_TP_gr2, #use 'log(count_pred)'
+               family = 'quasipoisson') 
+    summary(mod2p)
+
+    #Test predict and plot using ggpredict (will do manually below to have more control)
+    preds2p_ggp <- ggpredict(mod2p, terms = c('count_pred [0:19 by=1]','class_true'))
+    
+    ggplot(preds2p_ggp, aes(x = x, y = predicted, color = group)) +
+      geom_abline(slope = 1, intercept = 0, lty = 'dashed', lwd = 0.4, color = 'gray30') +
+      geom_line() +
+      geom_ribbon(aes(ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.4, color = NA) +
+      facet_wrap(~group) +
+      ggtitle('ggpredict method') +
+      # scale_color_viridis_d(option = "D") +
+      # ylim(c(0,20)) +
+      theme_bw()
+  
+    #store model results
+    mod2p_sum <- summary(mod2p)
+    coef2p <- data.frame(mod2p_sum$coefficients)
+      write.csv(coef2p, 'Malawi_evaluating/model_results_count_interaction_poisson.csv')
+    
+        
+```
+
+#### Predict values for plotting
+```{r}
+  
+  #generate new data for predictions (only go to max group size for each class)
+  group_size_gr2 <- group_size[group_size$group_max > 2,] #only keep classes with max group size > 2
+  newdata_gr2 <- group_size_gr2 %>% group_by(class_true) %>% 
+    summarise(count_pred = list(1:max(group_max))) %>% #or group_max+3
+    unnest(cols = c(count_pred))
+
+  #predict and calculate CI
+  preds2p <- predict(mod2p, newdata = newdata_gr2, type = 'response', se.fit = TRUE) 
+  preds_df_2p <- newdata_gr2 %>% mutate(fit = preds2p$fit,
+                                 lowerSE = fit - preds2p$se.fit,
+                                 upperSE = fit + preds2p$se.fit,
+                                 lowerCI = fit - (1.96*preds2p$se.fit),
+                                 upperCI = fit + (1.96*preds2p$se.fit))
+  
+```
+
+#### Plot true ~ predicted per class (GLM with Poisson)
+```{r}
+  
+  #change class names
+  preds_df_2p$class_mod <- ifelse(preds_df_2p$class_true == 'ground_hornbill', 'ground hornbill', preds_df_2p$class_true)
+  preds_df_2p$class_mod <- ifelse(preds_df_2p$class_true == 'bush_squirrel', 'squirrel', preds_df_2p$class_mod)
+  preds_df_2p$class_mod <- ifelse(preds_df_2p$class_true == 'scrub_hare', 'savanna hare', preds_df_2p$class_mod)
+  preds_df_2p$class_mod <- ifelse(preds_df_2p$class_true == 'guinea_fowl', 'guineafowl', preds_df_2p$class_mod)
+  preds_df_2p$class_mod <- gsub('_', ' ', preds_df_2p$class_mod)
+    #already changed them in 'sp_matches_TP' above
+  
+  #prelim plot
+  mod2p_plot <- ggplot(preds_df_2p, 
+                      aes(x = count_pred, y = fit, color = class_mod, fill = class_mod)) +
+    geom_abline(slope = 1, intercept = 0, lty = 'dashed', lwd = 0.4, color = 'gray30') +
+    geom_ribbon(aes(ymin = lowerCI, ymax = upperCI), alpha = 0.4, color = NA) +
+    geom_line() +
+    geom_rug(data = sp_matches_TP, aes(y = count_true), inherit.aes = FALSE, length = unit(0.05, 'npc')) +
+    geom_rug(data = sp_matches_TP, aes(x = count_pred), inherit.aes = FALSE, length = unit(0.05, 'npc')) +
+    xlab('Predicted count') + ylab('True count') +
+    facet_wrap(~class_mod, nrow = 5) + #, scales = 'free'
+    theme_bw() + theme(legend.position = 'none')
+  mod2_plot
+  
+  #now add max group size so I can change the axes by class
+  preds_df_2p$max_group_size <- group_size$group_max[match(preds_df_2p$class_true, group_size$class_true)]
+    table(preds_df_2p$max_group_size)
+  
+  #I read in phylopic IDs above -- but change some coords here if I need to 
+  phylopic_ids[phylopic_ids$species_cleaned %in% c('bushbuck','ground hornbill','impala',
+                                                   'porcupine','reedbuck','small antelope')]$y <- 0.75
+  phylopic_ids[phylopic_ids$species_cleaned %in% c('bushpig','eland','elephant','kudu','zebra',
+                                                   'waterbuck')]$y <- 2
+  phylopic_ids[phylopic_ids$species_cleaned %in% c('buffalo','vervet monkey','warthog',
+                                                   'guineafowl','baboon')]$y <- 3.0
+  phylopic_ids[phylopic_ids$species_cleaned %in% c('sable')]$y <- 10 #from 5
+  phylopic_ids[phylopic_ids$species_cleaned %in% c('sable')]$x <- 16 #from 14
+  phylopic_ids[phylopic_ids$species_cleaned %in% c('small antelope')]$x <- 2.5 #from 2.2
+  
+  #and icon sizes, if necessary (first play with range limits in scale_height_continuous though)
+  phylopic_ids[phylopic_ids$species_cleaned == 'impala']$height <- 1.05 #from 1.2
+  phylopic_ids[phylopic_ids$species_cleaned == 'eland']$height <- 2.6 #from 3.2
+  phylopic_ids[phylopic_ids$species_cleaned == 'warthog']$height <- 4.0 #from 3.0
+  phylopic_ids[phylopic_ids$species_cleaned == 'guineafowl']$height <- 2.5 #from 4.0
+  
+  #and merge them with data
+  preds_df_plot_2p <- preds_df_2p %>% left_join(phylopic_ids, by = c('class_mod' = 'species_cleaned'))
+  
+  #create a dummy dataset to set y axis limits for each row
+  preds_df_plot_2p$dummy_y <- ifelse(preds_df_plot_2p$class_true %in% c('bushbuck','ground_hornbill','impala',
+                                                                        'porcupine','reedbuck','small_antelope'), 4, NA)
+  preds_df_plot_2p$dummy_y <- ifelse(preds_df_plot_2p$class_true %in% c('bushpig','eland','elephant',
+                                                                        'kudu','zebra','waterbuck'), 9, preds_df_plot_2p$dummy_y)
+  preds_df_plot_2p$dummy_y <- ifelse(preds_df_plot_2p$class_true %in% c('buffalo','vervet_monkey','warthog',
+                                                                        'guinea_fowl','baboon'), 17, preds_df_plot_2p$dummy_y)
+  preds_df_plot_2p$dummy_y <- ifelse(preds_df_plot_2p$class_true %in% c('sable'), 46, preds_df_plot_2p$dummy_y)
+                                     
+  #plot! 
+  mod2p_plot_a <- ggplot(preds_df_plot_2p[preds_df_plot_2p$max_group_size > 2,], 
+                        aes(x = count_pred, y = fit, color = max_group_size, fill = max_group_size)) + #or use class_mod for color/fill
+    geom_point(aes(x = count_pred, y = dummy_y), size = 0, color = NA) + #for setting axis limits only
+    geom_abline(slope = 1, intercept = 0, lty = 'dashed', lwd = 0.4, color = 'gray40') +
+    geom_ribbon(aes(ymin = lowerCI, ymax = upperCI), alpha = 0.3, color = NA) +
+    geom_line(lwd = 1.1) + 
+    geom_phylopic(aes(x = x, y = y, uuid = id, height = height), fill = 'black', color = NA) +
+    scale_height_continuous(range = c(1,20)) + #for size of phylopic 
+    # coord_cartesian(clip = 'off') +
+    # geom_rug(data = sp_matches_TP[sp_matches_TP$max_group_size > 2,],
+    #          aes(y = count_pred, x = 0, color = max_group_size), inherit.aes = FALSE, length = unit(0.04, 'npc'),
+    #          sides = 'l', position = position_jitter(height = 0.3)) +
+    geom_rug(data = sp_matches_TP[sp_matches_TP$max_group_size > 2,],
+             aes(x = count_true, y = 0, color = max_group_size), inherit.aes = FALSE, length = unit(0.07, 'npc'),
+             sides = 'b', position = position_jitter(width = 0.3)) +
+    scale_color_viridis_c(option = 'D') +
+    scale_fill_viridis_c(option = 'D') +
+    scale_y_continuous(limits = c(0, NA),
+                       breaks = function(x) unique(floor(pretty(seq(min(x), (max(x) + 1) * 1.1))))) + #ensures y-axes >0
+    scale_x_continuous(limits = c(0, NA),
+                       breaks = function(x) unique(floor(pretty(seq(min(x), (max(x) + 1) * 1.1))))) + #ensures y-axes >0
+    xlab('Predicted count') + ylab('True count (± 95% CI)') +
+    # facet_wrap(~class_mod_sort, nrow = 3, scales = 'free') + #nrow = 3 or 6
+    facet_wrap(~reorder(class_mod, max_group_size), nrow = 3, scales = 'free') + #nrow = 3 or 6
+    theme_bw() + theme(legend.position = 'none',
+                       strip.background = element_blank(),
+                       strip.placement = 'outside',
+                       strip.text = element_text(size = 10), 
+                       axis.title = element_text(size = 12))
+  mod2p_plot_a
+  
+  #combine with other plots
+  fig6p <- ((mod1_plot_prop + 
+               theme(plot.title = element_blank(),
+                     axis.text.y = element_blank(),
+                     axis.ticks.y.left = element_blank(),
+                     axis.ticks.y.right = element_line(linewidth = 2))) | (mod1_plot + 
+                                                                             theme(plot.title = element_blank(),
+                                                                                   axis.text.y = element_text(hjust = 0.5)))) / 
+    mod2p_plot_a +
+    plot_annotation(tag_levels = 'A') & 
+    theme(plot.tag = element_text(face = 'bold', size = 16)) #plot.tag.position = c(0.05, 0.95)
+  fig6p
+  
+  ggsave('figures/count_model_panel3_f_poisson2.png', fig6p, dpi = 1000, width = 9, height = 10)
+  
+  ##To report in appendix:
+  summary(mod2p)
+  
+
+```
+
+
+    
+    
+    
+# ### Old:  
+#   #plot groups of 1 or 2
+#   mod2_plot_b <- ggplot(preds_df[preds_df$max_group_size <=2,], 
+#                       aes(x = count_pred, y = fit, color = class_true, fill = class_true)) +
+#     # geom_pointrange(aes(ymin = lowerCI, ymax = upperCI)) +
+#     geom_ribbon(aes(ymin = lowerCI, ymax = upperCI), alpha = 0.4, color = NA) +
+#     geom_line() + 
+#     geom_abline(slope = 1, intercept = 0, lty = 'dashed', lwd = 0.4) +
+#     xlim(c(0,2)) + ylim(c(0,5)) +
+#     geom_rug(data = sp_matches_TP[sp_matches_TP$max_group_size <= 2,],
+#              aes(x = count_pred), inherit.aes = FALSE) +
+#     ggtitle('Max group size <= 2') +
+#     xlab('Predicted count') + ylab('True count') +
+#     facet_wrap(~class_true, nrow = 5) +
+#     theme_bw() + theme(legend.position = 'none')
+#   mod2_plot_b
+#   
+#   #plot groups over 2
+#   mod2_plot_c <- ggplot(preds_df[preds_df$max_group_size > 2,], 
+#                         aes(x = count_pred, y = fit, color = class_true, fill = class_true)) +
+#     # geom_pointrange(aes(ymin = lowerCI, ymax = upperCI)) +
+#     geom_ribbon(aes(ymin = lowerCI, ymax = upperCI), alpha = 0.4, color = NA) +
+#     geom_line() + 
+#     geom_abline(slope = 1, intercept = 0, lty = 'dashed', lwd = 0.4) +
+#     geom_rug(data = sp_matches_TP[sp_matches_TP$max_group_size > 2,],
+#              aes(x = count_pred), inherit.aes = FALSE) +
+#     ggtitle('Max group size > 2') +
+#     xlab('Predicted count') + ylab('True count') +
+#     facet_wrap(~class_true, nrow = 5) +
+#     theme_bw() + theme(legend.position = 'none')
+#   mod2_plot_c
+#   
+#   #plot all as facets in 3 categories
+#   preds_df$max_group_bin <- ifelse(preds_df$max_group_size == 1, '1', 
+#                                    ifelse(preds_df$max_group_size > 1 & preds_df$max_group_size < 8, '2-8', '>8'))
+#     table(preds_df$max_group_bin)
+# 
+#   mod2_plot_d <- ggplot(preds_df[preds_df$max_group_bin == '1',], aes(x = count_pred, y = fit, color = class_true, fill = class_true)) +
+#     geom_abline(slope = 1, intercept = 0, lty = 'dashed', lwd = 0.4, color = 'gray30') +
+#     geom_ribbon(aes(ymin = lowerCI, ymax = upperCI), alpha = 0.4, color = NA) +
+#     geom_line() +
+#     coord_cartesian(xlim = c(1,5), ylim = c(1,6.4)) +
+#     geom_rug(data = sp_matches_TP[sp_matches_TP$max_group_bin == '1',],
+#              aes(x = count_pred), inherit.aes = FALSE) +
+#     xlab('Predicted count') + ylab('True count') +
+#     facet_wrap(~class_true, nrow = 5, scales = 'free_y') +
+#     theme_bw() + theme(legend.position = 'none')
+#   mod2_plot_d  
+#     
+#   mod2_plot_e <- ggplot(preds_df[preds_df$max_group_bin == '2-8',], aes(x = count_pred, y = fit, color = class_true, fill = class_true)) +
+#     geom_abline(slope = 1, intercept = 0, lty = 'dashed', lwd = 0.4, color = 'gray30') +
+#     geom_ribbon(aes(ymin = lowerCI, ymax = upperCI), alpha = 0.4, color = NA) +
+#     geom_line() +
+#     coord_cartesian(xlim = c(1,10), ylim = c(1,13)) +
+#     geom_rug(data = sp_matches_TP[sp_matches_TP$max_group_bin == '2-8',],
+#              aes(x = count_pred), inherit.aes = FALSE) +
+#     xlab('Predicted count') + ylab('True count') +
+#     facet_wrap(~class_true, nrow = 5, scales = 'free_y') +
+#     theme_bw() + theme(legend.position = 'none')
+#   mod2_plot_e
+#   
+#   mod2_plot_f <- ggplot(preds_df[preds_df$max_group_bin == '>8',], aes(x = count_pred, y = fit, color = class_true, fill = class_true)) +
+#     geom_abline(slope = 1, intercept = 0, lty = 'dashed', lwd = 0.4, color = 'gray30') +
+#     geom_ribbon(aes(ymin = lowerCI, ymax = upperCI), alpha = 0.4, color = NA) +
+#     geom_line() +
+#     # coord_cartesian(xlim = c(1,5), ylim = c(1,6.4)) +
+#     geom_rug(data = sp_matches_TP[sp_matches_TP$max_group_bin == '>8',],
+#              aes(x = count_pred), inherit.aes = FALSE) +
+#     xlab('Predicted count') + ylab('True count') +
+#     facet_wrap(~class_true, nrow = 5, scales = 'free_y') +
+#     theme_bw() + theme(legend.position = 'none')
+#   mod2_plot_f
+#   
+#   mod2_plot_d | mod2_plot_e | mod2_plot_f
+  
+```
+  
+##>Plotting out to 10 doesn't make much sense for lots of these species
+
+
+#exploratory...
+
+ggplot(sp_matches_TP[sp_matches_TP$class_true == 'aardvark',], aes(x = count_true, y = count_pred)) + 
+  geom_point()
+
+ggplot(sp_matches_TP, aes(x = class_true, y = diff)) + 
+  # geom_point(position = position_jitter(width = 0.2)) +
+  geom_boxplot() +
+  # geom_violin(trim = TRUE) +
+  theme_bw() + theme(axis.text.x = element_text(angle = 45))
+
+ggplot(sp_matches_TP, aes(x = class_true, y = count_true)) + 
+  # geom_point(position = position_jitter(width = 0.2)) +
+  # geom_boxplot() +
+  geom_violin(trim = TRUE) +
+  theme_bw() + theme(axis.text.x = element_text(angle = 45))
