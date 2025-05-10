@@ -1,9 +1,3 @@
----
-editor_options: 
-  markdown: 
-    wrap: 72
----
-
 # Nkhotakota camera traps
 
 ## Code and data for Appel et al. (Ecological Applications)
@@ -22,7 +16,7 @@ project on [LILA.science](https://lila.science/).
 
 ### Directory contents:
 
-#### data 
+#### data
 
 -   **megadetector**: outputs from [MegaDetector
     v5](https://github.com/agentmorris/MegaDetector) inference
@@ -40,22 +34,22 @@ project on [LILA.science](https://lila.science/).
 
 R scripts to conduct model evaluation presented in the manuscript
 
--   *00_parse_files.R*: parses files in **predictions** and
+-   `00_parse_files.R` parses files in **predictions** and
     **review_summaries** folders
 
--   *01_summarize.R:*summarizes data splits by class
+-   `01_summarize.R` summarizes data splits by class
 
--   *02_model_evaluation_metrics.R:* calculates precision, recall, and
-    F1 metrics
+-   `02_model_evaluation_metrics.R` calculates precision, recall, and F1
+    metrics
 
--   *03_model_evaluation_counts.R:* compares true vs. predicted
-    per-image animal counts
+-   `03_model_evaluation_counts.R` compares true vs. predicted per-image
+    animal counts
 
--   *04_model_evaluation_species_richness.R:* compares true vs.
-    predicted species richness
+-   `04_model_evaluation_species_richness.R` compares true vs. predicted
+    species richness
 
--   *05_model_evaluation_md_comparison.R:* compares YOLO vs.
-    MegaDetector predictions
+-   `05_model_evaluation_md_comparison.R` compares YOLO vs. MegaDetector
+    predictions
 
 #### YOLO:
 
@@ -78,14 +72,12 @@ Example implementation with darknet installed locally:
     following directories: ...
 2.  run the following code in a terminal
 
-```         
- python labelBatchPhotosArray.py path/to/image/folder --device 1
- python create_njobvu_project_single.py path/to/OUTfile.txt
-```
+`python labelBatchPhotosArray.py path/to/image/folder --device 1`
 
-|                  |                       |
+`python create_njobvu_project_single.py path/to/OUTfile.txt`
+
 |------------------|-----------------------|
 | ![](eland.png)   | ![](honey_badger.png) |
 | ![](leopard.png) | ![](zebra.png)        |
 
-: *Example images from Nkhotakota Camera Traps*
+*Example images from Nkhotakota Camera Traps*
