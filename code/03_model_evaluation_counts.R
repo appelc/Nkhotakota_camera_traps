@@ -75,8 +75,6 @@ colnames(coef1b) <- c('est','se','t_value','p_value')
 coef1a$class <- gsub('class_true', '', rownames(coef1a))
 coef1b$class <- gsub('class_true', '', rownames(coef1b))
 
-coef1a$sig <- ifelse(coef$p_value <= 0.05, '*','')
-
 #convert SE to CI
 coef1a$lci <- coef1a$est - (1.96 * coef1a$se)
 coef1a$uci <- coef1a$est + (1.96 * coef1a$se)
@@ -112,8 +110,8 @@ group_size <- group_size[group_size$class_true != 'human',]
 #add to coefficient dataframe
 coef1a$max_group_size <- group_size$group_max[match(coef1a$class, group_size$class_true)]
 coef1a$mean_group_size <- group_size$group_avg[match(coef1a$class, group_size$class_true)]
-  table(coef1a$max_group_size)
-  table(round(coef1a$mean_group_size)) #round or floor?
+table(coef1a$max_group_size)
+table(round(coef1a$mean_group_size)) #round or floor?
 
 coef1a$max_over_1 <- ifelse(coef1a$max_group_size > 1, 'y', 'n')
 coef1a$mean_over_1 <- ifelse(coef1a$mean_group_size > 1, 'Groups > 1', 'Groups = 1') #these end up being the same
@@ -149,7 +147,6 @@ mod1a_plot <- ggplot(coef1a, aes(x = reorder(class_mod, est_mod1b), y = est,
   coord_flip() +
   ggtitle('True - Predicted') +
   geom_hline(yintercept = 0, lty = 'dashed') +
-  # geom_text(aes(label = sig), hjust = -3, vjust = 0.8, size = 10, color = 'red') +
   ylab('Additive change ± 95% CI') +
   theme_bw() + theme(axis.title.y = element_blank(),
                      axis.text = element_text(size = 12),
@@ -352,7 +349,7 @@ phylopic_ids$height[phylopic_ids$species_cleaned == 'sable'] <-100
 preds_df_plot <- preds_df %>% left_join(phylopic_ids, by = c('class_mod' = 'species_cleaned'))
 
 #sort facets by estimates to match prev figure
-# preds_df_plot <- preds_df_plot %>% mutate(class_mod_sort = reorder(class_mod, fit)) #no, reorder by group size, below
+preds_df_plot <- preds_df_plot %>% mutate(class_mod_sort = reorder(class_mod, fit)) #no, reorder by group size, below
 sp_matches_TP$class_mod_sort <- factor(sp_matches_TP$class_mod, levels = levels(preds_df_plot$class_mod_sort)) #to match
 
 
@@ -385,30 +382,8 @@ mod2_plot_a <- ggplot(preds_df_plot[preds_df_plot$max_group_size > 2,],
 mod2_plot_a
 #ggsave('figures/count_model_predictions_over2.png', mod2_plot_a, dpi = 1000, width = 5, height = 6)
 
+## Don't use this one though; use Poisson, below
 
-## combine plots
-
-fig6a <- ((mod1b_plot_prop + theme(plot.title = element_blank())) | mod2_plot_a) + plot_layout(widths = c(1, 2))
-fig6a
-#ggsave('figures/count_model_panel.png', fig6a, dpi = 1000, width = 9.5, height = 7.5)
-
-fig6b <- ((mod1a_plot + theme(plot.title = element_blank())) | (mod1b_plot_prop + theme(plot.title = element_blank()))) / 
-  mod2_plot_a
-fig6b
-# ggsave('figures/count_model_panel3.png', fig6c, dpi = 1000, width = 9, height = 10)
-
-fig6c <- ((mod1b_plot_prop + theme(plot.title = element_blank(),
-                                  axis.text.y = element_blank(),
-                                  axis.ticks.y.left = element_blank(),
-                                  axis.ticks.y.right = element_line(linewidth = 2))) | (mod1a_plot + theme(plot.title = element_blank(),
-                                                                                                          axis.text.y = element_text(hjust = 0.5)))) / 
-  mod2_plot_a +
-  plot_annotation(tag_levels = 'A') & 
-  theme(plot.tag = element_text(face = 'bold', size = 16)) #plot.tag.position = c(0.05, 0.95)
-fig6c
-
-# ggsave('figures/count_model_panel3_e.png', fig6c, dpi = 1000, width = 9, height = 10)
-  
 
 ## Model 2b --------------------------------------------------------------------
 ### How much higher is the true count for each increase in predicted count? (GLM with Poisson)

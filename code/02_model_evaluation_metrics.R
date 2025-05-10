@@ -256,6 +256,9 @@ preds_sp_list <- lapply(species, function(sp) preds_df[preds_df$species_cleaned 
                                                 0.3,0.3,
                                                 0.5,0.4))
   
+  #save phylopic IDs
+  write.csv(phylopic_ids, 'outputs/phylopic_ids.csv')
+  
   #merge phylopic IDs with data
   metrics_filtered <- metrics_filtered %>% left_join(phylopic_ids, by = 'species_cleaned')
   
@@ -468,8 +471,7 @@ preds_sp_list <- lapply(species, function(sp) preds_df[preds_df$species_cleaned 
   
   'id' = c('cfee2dca-3767-46b8-8d03-bd8f46e79e9e','72f2f854-f3cd-4666-887c-35d5c256ab0f',
            '65c4a9b3-dcde-4f0f-9a1f-8d71e74be9ec','7fb9bea8-e758-4986-afb2-95a2c3bf983d',
-           # '540d58bc-d82f-4cfc-a63b-2c37d083edec','3d8acaf6-4355-491e-8e86-4a411b53b98b', #lesser kudu (for bushbuck) and sus scrofa (bushpig)
-           '540d58bc-d82f-4cfc-a63b-2c37d083edec','565c4a96-c80d-4ee3-86df-6f6c58ba2338', #lesser kudu (for bushbuck) and red river hog (bushpig)
+           '540d58bc-d82f-4cfc-a63b-2c37d083edec','565c4a96-c80d-4ee3-86df-6f6c58ba2338', #lesser kudu and red river hog here
            '7f4984bb-65ba-4f77-a92d-96e2c5dc65f0','6f3ebbc6-be53-4216-b45b-946f7984669b',
            '7db171af-ac7a-4859-9c2b-66488a5a5c95','62398ac0-f0c3-48f8-8455-53512a05fbc4',
            '4f49e5d0-f41e-427c-a1ab-9ec51e1bd72b','a8018e40-5257-4ad5-a42e-6fbad115deab',
@@ -485,5 +487,6 @@ preds_sp_list <- lapply(species, function(sp) preds_df[preds_df$species_cleaned 
            'f93103f1-e2a0-4c73-b274-c7b51afe4db0','81caf94e-5cbe-4e5e-8101-545abea2bfc0')
   
   get_attribution(id, text = TRUE, permalink = TRUE)
+  
   
   
