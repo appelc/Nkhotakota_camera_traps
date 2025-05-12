@@ -4,7 +4,9 @@
 
 This repository contains code and data to evaluate a YOLOv4 multiclass detector model trained on wildlife species from camera trap images in Nkhotakota Wildlife Reserve (NWR), Malawi. Annotation, model training, and review were performed using the [Njobvu-AI](https://github.com/sullichrosu/Njobvu-AI) software.
 
-The model weights file is available to download at X and an inference script is included below: [Example implementation of NWR_YOLO model]
+The model weights file is available to download [here](https://doi.org/10.5281/zenodo.15392141) and an inference script is included below: [Example implementation of NWR_YOLO model]
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15392141.svg)](https://doi.org/10.5281/zenodo.15392141)
 
 Images and annotations are published in the **Nkhotakota Camera Traps** project on [LILA.science](https://lila.science/).
 
@@ -47,9 +49,9 @@ Python code and model files to perform inference using the Nkhotakota YOLOv4 mul
 ### Example implementation of NWR_YOLO model
 
 1.  Download the [NWR_YOLO](https://github.com/appelc/Nkhotakota_camera_traps/tree/main/YOLO) folder from this repository
-2.  Download the NWR_YOLO_v1 model from Zenodo, unzip the folder, and place it in the NWR_YOLO directory from Step 1
+2.  Download the [NWR_YOLO_v1 model from Zenodo](https://doi.org/10.5281/zenodo.15392141), unzip the folder, and place it in the NWR_YOLO directory from Step 1
 3.  Ensure [darknet](https://github.com/AlexeyAB/darknet) is installed locally
-4.  Open `inference_yolo``.py` in a text editor and update **darknet_path** (line 15) with the installation location from Step 3
+4.  Open ``` inference_yolo``.py ``` in a text editor and update **darknet_path** (line 15) with the installation location from Step 3
 5.  Ensure image data are organized in the following way: *base_dir/image_folder/file1.JPG*, etc.
 6.  Open a terminal, navigate to the location of your local **NWR_YOLO** folder
 7.  To perform inference (generate predictions on new data using the NWR_YOLO model):
