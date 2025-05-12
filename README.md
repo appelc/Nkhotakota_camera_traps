@@ -4,9 +4,7 @@
 
 This repository contains code and data to evaluate a YOLOv4 multiclass detector model trained on wildlife species from camera trap images in Nkhotakota Wildlife Reserve (NWR), Malawi. Annotation, model training, and review were performed using the [Njobvu-AI](https://github.com/sullichrosu/Njobvu-AI) software.
 
-The model weights file is available to download [here](https://doi.org/10.5281/zenodo.15392141) and an inference script is included below: [Example implementation of NWR_YOLO model]
-
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15392141.svg)](https://doi.org/10.5281/zenodo.15392141)
+The NWR_YOLO_v1 model weights file is available to download here: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15392141.svg)](https://doi.org/10.5281/zenodo.15392141) and an inference script is included [below](#example-implementation-of-NWR_YOLO-model).
 
 Images and annotations are published in the **Nkhotakota Camera Traps** project on [LILA.science](https://lila.science/).
 
@@ -46,7 +44,7 @@ Python code and model files to perform inference using the Nkhotakota YOLOv4 mul
 
 -   `njobvu_project.py` to create a Njobvu-AI project for review of model predictions
 
-### Example implementation of NWR_YOLO model
+### Example implementation of NWR_YOLO model {#example-implementation-of-nwr_yolo-model}
 
 1.  Download the [NWR_YOLO](https://github.com/appelc/Nkhotakota_camera_traps/tree/main/YOLO) folder from this repository
 2.  Download the [NWR_YOLO_v1 model from Zenodo](https://doi.org/10.5281/zenodo.15392141), unzip the folder, and place it in the NWR_YOLO directory from Step 1
