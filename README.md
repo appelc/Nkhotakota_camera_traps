@@ -2,23 +2,13 @@
 
 ## Code and data for Appel et al. (Ecological Applications)
 
-This repository contains code and data to evaluate a YOLOv4 multiclass detector model trained on wildlife species from camera trap images in Nkhotakota Wildlife Reserve, Malawi. Annotation, model training, and review were performed using the [Njobvu-AI](https://github.com/sullichrosu/Njobvu-AI) software.
+This repository contains code and data to evaluate a YOLOv4 multiclass detector model trained on wildlife species from camera trap images in Nkhotakota Wildlife Reserve (NWR), Malawi. Annotation, model training, and review were performed using the [Njobvu-AI](https://github.com/sullichrosu/Njobvu-AI) software.
 
-The model weights file and inference script are also available (see YOLO folder).
+The model weights file is available to download at X and an inference script is included below: [Example implementation of NWR_YOLO model]
 
 Images and annotations are published in the **Nkhotakota Camera Traps** project on [LILA.science](https://lila.science/).
 
 ### Directory contents:
-
-#### data
-
--   **megadetector**: outputs from [MegaDetector v5](https://github.com/agentmorris/MegaDetector) inference
-
--   **predictions**: outputs from YOLO inference (as downloaded from Njobvu-AI)
-
--   **review_summaries**: summary files after projects have been reviewed (as downloaded from Njobvu-AI)
-
--   **training_summaries**: summaries of training data by class, hexagon, and site
 
 #### code
 
@@ -36,27 +26,46 @@ R scripts to conduct model evaluation presented in the manuscript
 
 -   `05_model_evaluation_md_comparison.R` compares YOLO vs. MegaDetector predictions
 
-#### YOLO:
+#### data
 
-Python code and model file to perform inference using the Nkhotakota YOLOv4 multiclass detector
+-   **megadetector**: outputs from [MegaDetector v5](https://github.com/agentmorris/MegaDetector) inference
 
--   model weights file: model weights file (trained from YOLOv4 base weights using [darknet](https://github.com/AlexeyAB/darknet) implemented in [Njobvu-AI](https://github.com/sullichrosu/Njobvu-AI))
+-   **predictions**: outputs from YOLO inference (as downloaded from Njobvu-AI)
 
--   `labelBatchPhotosArray.py` to generate predictions on new data
+-   **review_summaries**: summary files after projects have been reviewed (as downloaded from Njobvu-AI)
 
--   Njobvu-AI projects script: to create Njobvu-AI projects for review of model predictions
+-   **training_summaries**: summaries of training data by class, hexagon, and site
 
-Example implementation with darknet installed locally:
+#### YOLO_NWR
 
-1.  open `labelBatchPhotosArray.py` in a text editor and change the following directories: ...
-2.  run the following code in a terminal
+Python code and model files to perform inference using the Nkhotakota YOLOv4 multiclass detector
+
+-   `inference_yolo.py` to generate predictions on new data
+
+-   `njobvu_project.py` to create a Njobvu-AI project for review of model predictions
+
+### Example implementation of NWR_YOLO model
+
+1.  Download the [NWR_YOLO](https://github.com/appelc/Nkhotakota_camera_traps/tree/main/YOLO) folder from this repository
+2.  Download the NWR_YOLO_v1 model from Zenodo, unzip the folder, and place it in the NWR_YOLO directory from Step 1
+3.  Ensure [darknet](https://github.com/AlexeyAB/darknet) is installed locally
+4.  Open `inference_yolo``.py` in a text editor and update **darknet_path** (line 15) with the installation location from Step 3
+5.  Ensure image data are organized in the following way: *base_dir/image_folder/file1.JPG*, etc.
+6.  Open a terminal, navigate to the location of your local **NWR_YOLO** folder
+7.  To perform inference (generate predictions on new data using the NWR_YOLO model):
 
 ```         
-python labelBatchPhotosArray.py path/to/image/folder --device 1
+python inference_yolo.py path/to/base_dir/image_folder --device 1
 ```
 
+*OPTIONAL:* To create a Njobvu-AI project using the predictions from Step 7
+
+8.  Ensure [Njobvu-AI](https://github.com/sullichrosu/Njobvu-AI) is installed locally
+9.  Open `njobvu_project.py` in a text editor and update **njobvu_dir** (line 12) with the location of your local Njobvu-AI-main folder
+10. Run the code below, then open the Njobvu-AI program to view the project
+
 ```         
-python create_njobvu_project_single.py path/to/OUTfile.txt
+python njobvu_project.py path/to/base_dir/image_folder/OUTfile.txt
 ```
 
 |                  |                       |
