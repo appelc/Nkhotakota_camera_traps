@@ -2,11 +2,11 @@
 
 ## Code and data for Appel et al. (Ecological Applications)
 
-This repository contains code and data to evaluate a YOLOv4 multiclass detector model trained on wildlife species from camera trap images in Nkhotakota Wildlife Reserve (NWR), Malawi. Annotation, model training, and review were performed using the [Njobvu-AI](https://github.com/sullichrosu/Njobvu-AI) software.
+🖥️ This repository contains code and data to evaluate a YOLOv4 multiclass detector model trained on wildlife species from camera trap images in Nkhotakota Wildlife Reserve (NWR), Malawi. Annotation, model training, and review were performed using the [Njobvu-AI](https://github.com/sullichrosu/Njobvu-AI) software.
 
-The model weights file is available to download here: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15392141.svg)](https://doi.org/10.5281/zenodo.15392141) and an inference script is included [below](#example-implementation-of-nwr_yolo-model).
+🔗 The model weights file is available to download here: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15392141.svg)](https://doi.org/10.5281/zenodo.15392141) and an inference script is included [below](#example-implementation-of-nwr_yolo-model).
 
-Images and annotations are published in the **Nkhotakota Camera Traps** project on [LILA.science](https://lila.science/).
+🐘 Images and annotations are published in the **Nkhotakota Camera Traps** project on [LILA.science](https://lila.science/).
 
 ### Directory contents:
 
