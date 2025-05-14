@@ -36,6 +36,8 @@ R scripts to conduct model evaluation presented in the manuscript
 
 -   **training_summaries**: summaries of training data by class, hexagon, and site
 
+    -   "training_data_bboxes.csv" contains the annotations used to train the model
+
 #### YOLO_NWR
 
 Python code and model files to perform inference using the Nkhotakota YOLOv4 multiclass detector
@@ -44,7 +46,7 @@ Python code and model files to perform inference using the Nkhotakota YOLOv4 mul
 
 -   `njobvu_project.py` to create a Njobvu-AI project for review of model predictions
 
-### Example implementation of NWR_YOLO model
+### Example implementation of NWR_YOLO model {#example-implementation-of-nwr_yolo-model}
 
 1.  Download the [NWR_YOLO](https://github.com/appelc/Nkhotakota_camera_traps/tree/main/YOLO) folder from this repository
 2.  Download the [NWR_YOLO_v1 model from Zenodo](https://doi.org/10.5281/zenodo.15392141), unzip the folder, and place it in the NWR_YOLO directory from Step 1
