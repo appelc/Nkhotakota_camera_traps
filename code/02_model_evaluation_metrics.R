@@ -438,7 +438,7 @@ preds_sp_list <- lapply(species, function(sp) preds_df[preds_df$species_cleaned 
   # ggsave('figures/metrics_vs_training_3.svg', metrics_vs_training_2, dpi = 1000, width = 8, height = 4)
   
   
-  #Combine panels and save
+  #Combine panels and save (Figure 5)
   metrics_panel <- (metrics_vs_training_2 / metrics_vs_training_log) +
     plot_annotation(tag_levels = 'A') &
     theme(plot.tag = element_text(face = 'bold', size = 16))

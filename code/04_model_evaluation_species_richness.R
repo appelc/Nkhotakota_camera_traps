@@ -91,12 +91,10 @@ head(model_preds)
 head(model_params)
 
 
-## Plot ------------------------------------------------------------------------
+## Plot (Figure 7) -------------------------------------------------------------
 head(model_preds)
 head(richness)
 thresh
-
-# blue = rgb(red = 0, green = 153, blue = 153, maxColorValue = 255)
 
 #plot
 sp_rich_plot <- ggplot(data = richness, aes(x = rich_obs, y = rich_pred)) +
@@ -116,7 +114,6 @@ sp_rich_plot <- ggplot(data = richness, aes(x = rich_obs, y = rich_pred)) +
                      strip.text = element_text(size = 12))
 sp_rich_plot
 # ggsave('figures/species_richness_ggplot.png', sp_rich_plot, dpi = 1000, width = 7, height = 4)
-  
   
   
 ## Summaries -------------------------------------------------------------------
@@ -156,7 +153,6 @@ richness$bias <- richness$rich_pred - richness$rich_obs
 blue = rgb(red = 0, green = 153, blue = 153, alpha = 125, maxColorValue = 255)
 
 #set up plot to save
-# pdf("../figures/speciesRichness_thresholds.pdf", width = 11, height = 8.5)
 png('figures/species_richness.png', width = 7, height = 4, units = 'in', res = 1000)  #open PNG device
 
 #and thresholds

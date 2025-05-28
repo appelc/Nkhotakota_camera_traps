@@ -8,6 +8,8 @@
 
 🐘 Images and annotations are published in the **Nkhotakota Camera Traps** project on [LILA.science](https://lila.science/).
 
+------------------------------------------------------------------------
+
 ### Directory contents:
 
 #### code
@@ -40,13 +42,15 @@ R scripts to conduct model evaluation presented in the manuscript
 
 #### YOLO_NWR
 
-Python code and model files to perform inference using the Nkhotakota YOLOv4 multiclass detector
+Python code to perform inference using the Nkhotakota YOLOv4 multiclass detector
 
 -   `inference_yolo.py` to generate predictions on new data
 
 -   `njobvu_project.py` to create a Njobvu-AI project for review of model predictions
 
-### Example implementation of NWR_YOLO model {#example-implementation-of-nwr_yolo-model}
+------------------------------------------------------------------------
+
+### Example implementation of NWR_YOLO model 
 
 1.  Download the [NWR_YOLO](https://github.com/appelc/Nkhotakota_camera_traps/tree/main/YOLO) folder from this repository
 2.  Download the [NWR_YOLO_v1 model from Zenodo](https://doi.org/10.5281/zenodo.15392141), unzip the folder, and place it in the NWR_YOLO directory from Step 1

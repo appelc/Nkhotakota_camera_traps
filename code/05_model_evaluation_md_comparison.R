@@ -417,7 +417,9 @@ sens_spec_yolo <- matches_yolo_wide %>% summarise(Sensitivity = (TP / (TP + FN))
 sens_spec <- bind_rows(sens_spec_md, sens_spec_yolo)
 sens_spec_long <- sens_spec %>% pivot_longer(cols = c(Sensitivity, Specificity), names_to = 'metric', values_to = 'value')
 
-#plot
+
+## Plot (Figure 4) -------------------------------------------------------------
+
 sens_spec_plot <- ggplot(sens_spec_long, aes(x = thresh, y = value, color = Model)) +
   geom_line(lwd = 1.6, aes(lty = Model)) +
   # geom_point(aes(color = Model), size = 2) +
@@ -437,13 +439,13 @@ sens_spec_plot <- ggplot(sens_spec_long, aes(x = thresh, y = value, color = Mode
 sens_spec_plot    
 
 #Combine with confusion matrices
-figure_6 <- ((md_true + theme(legend.position = 'none') | yolo_true | md_yolo) / sens_spec_plot) + 
+figure_4 <- ((md_true + theme(legend.position = 'none') | yolo_true | md_yolo) / sens_spec_plot) + 
   plot_layout(heights = c(1,3)) +
   plot_annotation(tag_levels = 'A') & 
   theme(plot.tag = element_text(face = 'bold', size = 16),
         plot.tag.position = c(0.05, 0.95))
-figure_6
+figure_4
 
-# ggsave('figures/confusion_matrices_thresh25_with_sens_spec_2.png', figure_6, dpi = 1000, width = 10, height = 8)
+# ggsave('figures/confusion_matrices_thresh25_with_sens_spec_2.png', figure_4, dpi = 1000, width = 10, height = 8)
   
     
