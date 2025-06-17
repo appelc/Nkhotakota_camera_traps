@@ -50,9 +50,23 @@ Python code to perform inference using the Nkhotakota YOLOv4 multiclass detector
 
 ------------------------------------------------------------------------
 
-### Example implementation of NWR_YOLO model 
+### Example implementation of NWR_YOLO model {#example-implementation-of-nwr_yolo-model}
 
-1.  Download the [NWR_YOLO](https://github.com/appelc/Nkhotakota_camera_traps/tree/main/YOLO) folder from this repository
+#### OPTION 1: using Njobvu-AI
+
+1.  Download the [NWR_YOLO_v1 model from Zenodo](https://doi.org/10.5281/zenodo.15392141) and unzip the folder
+
+2.  Ensure [Njobvu-AI](https://github.com/sullichrosu/Njobvu-AI) is installed locally
+
+3.  Ensure [darknet](https://github.com/AlexeyAB/darknet) is installed locally
+
+4.  Follow the instructions for Inference from the Njobvu-AI documentation ()
+
+    *NOTE:* the model weights input will be the file "X.zip" in the folder downloaded in Step 1
+
+#### OPTION 2: using the command line
+
+1.  Download the [NWR_YOLO](https://github.com/appelc/Nkhotakota_camera_traps/tree/main/NWR_YOLO) folder from this repository
 2.  Download the [NWR_YOLO_v1 model from Zenodo](https://doi.org/10.5281/zenodo.15392141), unzip the folder, and place it in the NWR_YOLO directory from Step 1
 3.  Ensure [darknet](https://github.com/AlexeyAB/darknet) is installed locally
 4.  Open `inference_yolo.py` in a text editor and update **darknet_path** (line 15) with the installation location from Step 3
@@ -70,7 +84,7 @@ To create a Njobvu-AI project using the predictions from Step 7:
 
 8.  Ensure [Njobvu-AI](https://github.com/sullichrosu/Njobvu-AI) is installed locally
 9.  Open `njobvu_project.py` in a text editor and update **njobvu_dir** (line 12) with the location of your local **Njobvu-AI-main** folder
-10. Run the code below, then open the Njobvu-AI program to view the project
+10. Run the code below, replacing "OUTfile.txt" with the name of the output file generated in Step 7. Then open the Njobvu-AI program to view the project.
 
 ```         
 python njobvu_project.py path/to/base_dir/image_folder/OUTfile.txt

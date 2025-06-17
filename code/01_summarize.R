@@ -248,6 +248,11 @@ write.csv(species_combined, 'outputs/images_train_val_props.csv')
   
 ## Plot side-by-side -----------------------------------------------------------
 
+#custom labels if <0.001
+species_combined$label <- ifelse(species_combined$pct < 0.001 & species_combined$pct > 0, "<0.001", 
+                                 ifelse(species_combined$pct == 0, '0', round(species_combined$pct, 3)))
+
+#plot
 class_nphotos_a1 <- ggplot(species_combined[species_combined$group == 'a' &
                                             !species_combined$species %in% classes_remove &
                                              species_combined$split == 'training',], 
@@ -324,7 +329,7 @@ class_nphotos_b1 <- ggplot(species_combined[species_combined$group == 'b' &
   coord_flip() +
   guides(fill = guide_legend(reverse = TRUE)) +
   geom_vline(xintercept = seq(0.5, 20, 1), color = 'gray90') +
-  geom_text(aes(label = round(pct,3)), position = position_dodge(1), hjust = 1.1,
+  geom_text(aes(label = label), position = position_dodge(1), hjust = 1.1,
             size = 3, fontface = 'italic', color = '#1b9e77') +
   # geom_text(data = species_combined[species_combined$group == 'b' &
   #                                     !species_combined$species %in% classes_remove &
@@ -353,7 +358,7 @@ class_nphotos_b2 <- ggplot(species_combined[species_combined$group == 'b' &
   scale_y_continuous(limits = c(0,5000), breaks = c(0,2500,5000)) +
   guides(fill = guide_legend(reverse = TRUE)) +
   geom_vline(xintercept = seq(0.5, 21, 1), color = 'gray90') +
-  geom_text(aes(label = round(pct,3)), position = position_dodge(1), hjust = 0,
+  geom_text(aes(label = label), position = position_dodge(1), hjust = 0,
             size = 3, fontface = 'italic', color = '#7570b3') +
   theme_classic() +
   theme(axis.title.y = element_blank(),
@@ -382,8 +387,11 @@ class_nphotos_c1 <- ggplot(species_combined[species_combined$group == 'c' &
   scale_x_discrete(position = 'top') +
   ylab('Number of images') +
   geom_vline(xintercept = seq(0.5, 21, 1), color = 'gray90') +
-  geom_text(aes(label = round(pct,3)), position = position_dodge(1), hjust = 1.1,
+  # geom_text(aes(label = round(pct,3)), position = position_dodge(1), hjust = 1.1,
+            # size = 3, fontface = 'italic', color = '#1b9e77') +
+  geom_text(aes(label = label), position = position_dodge(1), hjust = 1.1,
             size = 3, fontface = 'italic', color = '#1b9e77') +
+  #Validation labels:
   # geom_text(data = species_combined[species_combined$group == 'c' &
   #                                     !species_combined$species %in% classes_remove &
   #                                     species_combined$split == 'validation',],
@@ -411,7 +419,9 @@ class_nphotos_c2 <- ggplot(species_combined[species_combined$group == 'c' &
   scale_y_continuous(limits = c(0,900), breaks = c(0,250,500,750)) +
   guides(fill = guide_legend(reverse = TRUE)) +
   geom_vline(xintercept = seq(0.5, 20, 1), color = 'gray90') +
-  geom_text(aes(label = round(pct,3)), position = position_dodge(1), hjust = 0,
+  # geom_text(aes(label = round(pct,3)), position = position_dodge(1), hjust = 0,
+            # size = 3, fontface = 'italic', color = '#7570b3') +
+  geom_text(aes(label = label), position = position_dodge(1), hjust = 0,
             size = 3, fontface = 'italic', color = '#7570b3') +
   theme_classic() +
   theme(axis.title.y = element_blank(),
@@ -426,7 +436,7 @@ class_nphotos_c2
 
 combined_2 <- (((class_nphotos_a1 + theme(legend.position = 'none') | class_nphotos_a2 + theme(legend.position = 'none')) + plot_layout(widths = c(1, 1))) /
   ((class_nphotos_b1 + theme(legend.position = 'none') | class_nphotos_b2 + theme(legend.position = 'none')) + plot_layout(widths = c(1, 1))) /
-  ((class_nphotos_c1 + theme(legend.position = 'inside', legend.position.inside = c(0.3,0.2), legend.text = element_text(size = 12), legend.title = element_blank()) | 
+  ((class_nphotos_c1 + theme(legend.position = 'inside', legend.position.inside = c(0.2,0.2), legend.text = element_text(size = 12), legend.title = element_blank()) | 
       class_nphotos_c2 + theme(legend.position = 'inside', legend.position.inside = c(0.8, 0.2), legend.text = element_text(size = 12), legend.title = element_blank())) + plot_layout(widths = c(1, 1)))) +
   # plot_layout(heights = c(1.5, 2.5, 5)) + 
   plot_layout(heights = c(2, 3.6, 3.8)) +
@@ -434,7 +444,7 @@ combined_2 <- (((class_nphotos_a1 + theme(legend.position = 'none') | class_npho
   theme(plot.tag = element_text(face = 'bold', size = 16))
 combined_2
 
-ggsave('figures/images_train_val_prop_groups_nphotos5.png', combined_2, dpi = 600, width = 5, height = 8)
+ggsave('figures/images_train_val_prop_groups_nphotos6.png', combined_2, dpi = 600, width = 5, height = 8)
 
 
 ## Plot side-by-side (proportions) ---------------------------------------------
