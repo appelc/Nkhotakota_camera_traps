@@ -93,13 +93,19 @@ length(unique(preds_final$image))
 preds_final$filename <- paste(preds_final$image, '.JPG', sep = '')
 
 #parse info from filenames **OPTIONAL** -- we use the format 'SITE-CAMERA-CHECKDATE__DATE__TIME(BURST)'
-#extract site
-preds_final$site <- paste(sapply(strsplit(as.character(preds_final$image), '\\-'), '[', 1),
-                          sapply(strsplit(as.character(preds_final$image), '\\-'), '[', 2), sep = '-')
-table(preds_final$site, useNA = 'a')
+#extract hexagon names
+preds_final$hex <- sapply(strsplit(as.character(preds_final$image), '\\-'), '[', 1)
 
-#remove any if necessary
-preds_final <- preds_final[!preds_final$site %in% c('D1-NA','NA-NA'),]
+#remove sites from Chipata Mountain (not part of monitoring program)
+sort(unique(preds_final$hex))
+preds_final <- preds_final[!preds_final$hex %in% c('CHI'),]
+
+#pad hexagon/site names
+preds_final$hex <- sprintf('%s%02d', substr(preds_final$hex, 1, 1),
+                           as.numeric(substr(preds_final$hex, 2, nchar(preds_final$hex))))
+preds_final$site <- paste(preds_final$hex,
+                          sapply(strsplit(as.character(preds_final$image), '\\-'), '[', 2), sep = '-')
+sort(unique(preds_final$site))
 
 #format datetime
 preds_final$check <- sapply(strsplit(as.character(preds_final$image), '\\__'), '[', 1)
@@ -119,8 +125,13 @@ preds_final <- preds_final[!preds_final$datetime < '2018-01-01',]
 #also remove one 2020 photo from L21-B-2023-10-19 (this was a setup photo)
 preds_final <- preds_final[preds_final$image != 'L21-B-2023-10-19__2020-01-01__00-00-15(1)',]
 
-#remove sites from Chipata Mountain (not part of monitoring program)
-preds_final <- preds_final[!preds_final$site %in% c('CHI-01','CHI-02'),]
+#NAs?
+nrow(preds_final[is.na(preds_final$datetime),])
+sort(unique(preds_final[is.na(preds_final$datetime),]$site))
+View(preds_final[is.na(preds_final$datetime),])
+
+#why these extra rows? delete them
+preds_final <- preds_final[!is.na(preds_final$image),]
 
 #(end OPTIONAL)
 

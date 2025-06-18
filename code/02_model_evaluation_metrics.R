@@ -232,11 +232,13 @@ preds_sp_list <- lapply(species, function(sp) preds_df[preds_df$species_cleaned 
                                       'f7200232-d635-4d79-bcaa-a59867376d09','8952c22d-1d0b-4658-b8ff-348df8aff18f',
                                       '880baa26-af89-44ad-ae07-e92b84e3ff05','49b72776-1f99-442b-a084-65f402cdbd69',
                                       'e07d1491-1d85-4c47-9f7d-075ea57bf0c5','f25267a2-90b4-4ca7-af95-a425f3564bbe',
-                                      '5e900306-3a5e-4193-8a94-74cc765f0aaf','a0cde6a8-4a47-4562-827f-90bd8d7bdd05',
+                                      # '5e900306-3a5e-4193-8a94-74cc765f0aaf','a0cde6a8-4a47-4562-827f-90bd8d7bdd05',
+                                      '9f33e613-944c-483d-8275-cc59a1b470c2','a0cde6a8-4a47-4562-827f-90bd8d7bdd05', #replaced leopard (1st)
                                       'cf85f532-c0c2-40ba-ae83-47846caf1514','bb357997-4d4d-4e73-b853-d95a7a47ec68',
                                       'a363eadc-1b1e-41fb-ba8c-b45cb405a850','a6c8cc22-c035-48e1-bd2a-98a29446b392', #actually both roan
                                       '8930c815-0a3e-4b77-a2da-e7273bccddd7','01895510-7c27-489d-b441-6f72b1f562d2',
-                                      'c9aaafb0-bbab-43b7-b2a8-077ae0799b96','9303fc52-3da1-4d42-9e6d-665c21791df8', #diff squirrel sp
+                                      # 'c9aaafb0-bbab-43b7-b2a8-077ae0799b96','9303fc52-3da1-4d42-9e6d-665c21791df8',
+                                      'c9aaafb0-bbab-43b7-b2a8-077ae0799b96','2916f8fe-290a-423b-b6f7-fb975c30d518', #replaced squirrel (2nd)
                                       '9ebe32a3-3870-4073-9992-998dafe98014','d594a0c4-2708-4cde-ba41-08fde8b1184f',
                                       'f93103f1-e2a0-4c73-b274-c7b51afe4db0','81caf94e-5cbe-4e5e-8101-545abea2bfc0'),
                              'size_scaling' = c(0.3,0.3,
@@ -247,17 +249,17 @@ preds_sp_list <- lapply(species, function(sp) preds_df[preds_df$species_cleaned 
                                                 0.2,0.3,
                                                 0.2,0.2,
                                                 0.4,0.3,
-                                                0.3,0.4,
-                                                0.2,0.2,
+                                                0.3,0.5, #impala, kudu
+                                                0.3,0.2, #leopard, mongoose
                                                 0.3,0.3,
                                                 0.4,0.4,
                                                 0.2,0.3,
-                                                0.3,0.3,
+                                                0.3,0.2, #small antelope, squirrel
                                                 0.3,0.3,
                                                 0.5,0.4))
   
   #save phylopic IDs
-  write.csv(phylopic_ids, 'outputs/phylopic_ids.csv')
+  write.csv(phylopic_ids, 'outputs/phylopic_ids_new.csv')
   
   #merge phylopic IDs with data
   metrics_filtered <- metrics_filtered %>% left_join(phylopic_ids, by = 'species_cleaned')
@@ -286,7 +288,8 @@ preds_sp_list <- lapply(species, function(sp) preds_df[preds_df$species_cleaned 
                        axis.title.y = element_blank(),
                        legend.background = element_rect(color = 'gray'))
   metrics_grid
-  ggsave('figures/grid_metrics_5.png', metrics_grid, dpi = 1000, width = 8, height = 12)
+  # ggsave('figures/grid_metrics_fig6.png', metrics_grid, dpi = 1000, width = 8, height = 12)
+  ggsave('figures/grid_metrics_fig6.tif', metrics_grid, dpi = 600, width = 8, height = 12)
   
   #Some summaries to report:
   head(metrics_filtered)
@@ -305,7 +308,7 @@ preds_sp_list <- lapply(species, function(sp) preds_df[preds_df$species_cleaned 
 ## Plot AR, AP by training size  -----------------------------------------------
       
   #read in training data species summary
-  train_species <- fread('data/training_species_summary.csv')
+  train_species <- fread('data/training_summaries/training_classes_summary.csv')
   train_species <- train_species[train_species$split == 'train',]
   
   #filter for only the ones used in macro calculations (not strictly necessary here)
@@ -445,6 +448,7 @@ preds_sp_list <- lapply(species, function(sp) preds_df[preds_df$species_cleaned 
   metrics_panel
   
   # ggsave('figures/metrics_vs_training_panel.png', metrics_panel, dpi = 1000, width = 8, height = 8)
+  ggsave('figures/metrics_vs_training_panel_fig5.tif', metrics_panel, dpi = 600, width = 8, height = 8)
   
   
   #To report: values for species > 1000
@@ -478,11 +482,11 @@ preds_sp_list <- lapply(species, function(sp) preds_df[preds_df$species_cleaned 
            'f7200232-d635-4d79-bcaa-a59867376d09','8952c22d-1d0b-4658-b8ff-348df8aff18f',
            '880baa26-af89-44ad-ae07-e92b84e3ff05','49b72776-1f99-442b-a084-65f402cdbd69',
            'e07d1491-1d85-4c47-9f7d-075ea57bf0c5','f25267a2-90b4-4ca7-af95-a425f3564bbe',
-           '5e900306-3a5e-4193-8a94-74cc765f0aaf','a0cde6a8-4a47-4562-827f-90bd8d7bdd05',
+           '9f33e613-944c-483d-8275-cc59a1b470c2','a0cde6a8-4a47-4562-827f-90bd8d7bdd05', #replaced leopard (1st)
            'cf85f532-c0c2-40ba-ae83-47846caf1514','bb357997-4d4d-4e73-b853-d95a7a47ec68',
            'a363eadc-1b1e-41fb-ba8c-b45cb405a850','a6c8cc22-c035-48e1-bd2a-98a29446b392', #actually both roan
            '8930c815-0a3e-4b77-a2da-e7273bccddd7','01895510-7c27-489d-b441-6f72b1f562d2',
-           'c9aaafb0-bbab-43b7-b2a8-077ae0799b96','9303fc52-3da1-4d42-9e6d-665c21791df8', #diff squirrel sp
+           'c9aaafb0-bbab-43b7-b2a8-077ae0799b96','2916f8fe-290a-423b-b6f7-fb975c30d518', #replaced squirrel (2nd)
            '9ebe32a3-3870-4073-9992-998dafe98014','d594a0c4-2708-4cde-ba41-08fde8b1184f',
            'f93103f1-e2a0-4c73-b274-c7b51afe4db0','81caf94e-5cbe-4e5e-8101-545abea2bfc0')
   

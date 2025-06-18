@@ -444,310 +444,310 @@ combined_2 <- (((class_nphotos_a1 + theme(legend.position = 'none') | class_npho
   theme(plot.tag = element_text(face = 'bold', size = 16))
 combined_2
 
-ggsave('figures/images_train_val_prop_groups_nphotos6.png', combined_2, dpi = 600, width = 5, height = 8)
+ggsave('figures/images_train_val_prop_groups_nphotos6.tif', combined_2, dpi = 600, width = 5, height = 8)
 
 
 ## Plot side-by-side (proportions) ---------------------------------------------
+# 
+# class_nphotos_a1_prop <- ggplot(species_combined[species_combined$group == 'a' &
+#                                               !species_combined$species %in% classes_remove &
+#                                               species_combined$split == 'training',], 
+#                            aes(x = species, y = (pct), fill = split)) +
+#   geom_hline(yintercept = c(0.002,0.004,0.006), color = 'gray95') +
+#   geom_bar(stat = 'identity', #position = 'dodge',
+#            width=1, position=position_dodge(1)) + 
+#   geom_bar(data = species_combined[species_combined$group == 'a' &
+#                                      !species_combined$species %in% classes_remove &
+#                                      species_combined$split == 'validation',],
+#            stat = 'identity', width = 0.5, position = position_dodge(1),) +
+#   scale_fill_manual(values = c('#1b9e77','#d95f02')) +
+#   labs(fill = 'Split') + ylab('Proportion of dataset') +
+#   scale_y_reverse(limits = c(0.4,0), 
+#                   breaks = c(0,0.2,0.4)
+#                   ) +
+#   scale_x_discrete(position = 'top') +
+#   coord_flip() +
+#   guides(fill = guide_legend(reverse = TRUE)) +
+#   geom_vline(xintercept = seq(0.5, 20, 1), color = 'gray90') +
+#   geom_text(aes(label = round(number_images,2)), position = position_dodge(1), hjust = 1.1,
+#             size = 3, fontface = 'italic', color = '#1b9e77') +
+#   # geom_text(data = species_combined[species_combined$group == 'a' &
+#   #                                     !species_combined$species %in% classes_remove &
+#   #                                     species_combined$split == 'validation',],
+#   #           aes(label = round(pct,3)), position = position_dodge(1), hjust = 1.1,
+#   #           size = 3, fontface = 'italic', color = 'white') +
+#   theme_classic() +
+#   theme(axis.title.y = element_blank(),
+#         axis.title = element_text(size = 12),
+#         axis.text.y = element_blank(),
+#         axis.text = element_text(size = 12),
+#         strip.placement = 'outside',
+#         strip.text.y = element_text(angle = 0, size = 12))
+# class_nphotos_a1_prop
+# 
+# class_nphotos_a2_prop <- ggplot(species_combined[species_combined$group == 'a' & 
+#                                               !species_combined$species %in% classes_remove &
+#                                               species_combined$split == 'test',], 
+#                            aes(x = species, y = (pct), fill = split)) +
+#   geom_hline(yintercept = c(0.002,0.004,0.006), color = 'gray95') +
+#   geom_bar(stat = 'identity', #position = 'dodge',
+#            width=1, position=position_dodge(1)) + 
+#   scale_fill_manual(values = c('#7570b3')) +
+#   labs(fill = 'Split') + ylab('Proportion of dataset') +
+#   coord_flip() +
+#   scale_y_continuous(limits = c(0,0.4), 
+#                      breaks = c(0,0.2,0.4)
+#                      ) +
+#   guides(fill = guide_legend(reverse = TRUE)) +
+#   geom_vline(xintercept = seq(0.5, 20, 1), color = 'gray90') +
+#   geom_text(aes(label = round(number_images,2)), position = position_dodge(1), hjust = 0,
+#             size = 3, fontface = 'italic', color = '#7570b3') +
+#   theme_classic() +
+#   theme(axis.title.y = element_blank(),
+#         axis.title = element_text(size = 12),
+#         axis.text = element_text(size = 12),
+#         axis.text.y = element_text(hjust = 0.5),
+#         strip.placement = 'outside',
+#         strip.text.y = element_text(angle = 0, size = 12))
+# class_nphotos_a2_prop
+# 
+# class_nphotos_b1_prop <- ggplot(species_combined[species_combined$group == 'b' &
+#                                               !species_combined$species %in% classes_remove &
+#                                               species_combined$split == 'training',], 
+#                            aes(x = species, y = (pct), fill = split)) +
+#   geom_hline(yintercept = c(0.002,0.004,0.006), color = 'gray95') +
+#   geom_bar(stat = 'identity', #position = 'dodge',
+#            width=1, position=position_dodge(1)) + 
+#   geom_bar(data = species_combined[species_combined$group == 'b' &
+#                                      !species_combined$species %in% classes_remove &
+#                                      species_combined$split == 'validation',],
+#            stat = 'identity', width = 0.5, position = position_dodge(1),) +
+#   scale_fill_manual(values = c('#1b9e77','#d95f02')) +
+#   labs(fill = 'Split') + ylab('Proportion of dataset') +
+#   scale_y_reverse(limits = c(0.05,0), 
+#                   breaks = c(0,0.02,0.04)
+#                   ) +
+#   scale_x_discrete(position = 'top') +
+#   coord_flip() +
+#   guides(fill = guide_legend(reverse = TRUE)) +
+#   geom_vline(xintercept = seq(0.5, 20, 1), color = 'gray90') +
+#   geom_text(aes(label = round(number_images,3)), position = position_dodge(1), hjust = 1.1,
+#             size = 3, fontface = 'italic', color = '#1b9e77') +
+#   # geom_text(data = species_combined[species_combined$group == 'b' &
+#   #                                     !species_combined$species %in% classes_remove &
+#   #                                     species_combined$split == 'validation',],
+#   #           aes(label = round(pct,3)), position = position_dodge(1), hjust = 1.1,
+#   #           size = 3, fontface = 'italic', color = 'white') +
+#   theme_classic() +
+#   theme(axis.title.y = element_blank(),
+#         axis.title = element_text(size = 12),
+#         axis.text.y = element_blank(),
+#         axis.text = element_text(size = 12),
+#         strip.placement = 'outside',
+#         strip.text.y = element_text(angle = 0, size = 12))
+# class_nphotos_b1_prop
+# 
+# class_nphotos_b2_prop <- ggplot(species_combined[species_combined$group == 'b' & 
+#                                               !species_combined$species %in% classes_remove &
+#                                               species_combined$split == 'test',], 
+#                            aes(x = species, y = (pct), fill = split)) +
+#   geom_hline(yintercept = c(0.002,0.004,0.006), color = 'gray95') +
+#   geom_bar(stat = 'identity', #position = 'dodge',
+#            width=1, position=position_dodge(1)) + 
+#   scale_fill_manual(values = c('#7570b3')) +
+#   labs(fill = 'Split') + ylab('Proportion of dataset') +
+#   coord_flip() +
+#   scale_y_continuous(limits = c(0,0.05), 
+#                      breaks = c(0,0.02,0.04)
+#                      ) +
+#   guides(fill = guide_legend(reverse = TRUE)) +
+#   geom_vline(xintercept = seq(0.5, 21, 1), color = 'gray90') +
+#   geom_text(aes(label = round(number_images,3)), position = position_dodge(1), hjust = 0,
+#             size = 3, fontface = 'italic', color = '#7570b3') +
+#   theme_classic() +
+#   theme(axis.title.y = element_blank(),
+#         axis.title = element_text(size = 12),
+#         axis.text = element_text(size = 12),
+#         axis.text.y = element_text(hjust = 0.5),
+#         strip.placement = 'outside',
+#         strip.text.y = element_text(angle = 0, size = 12))
+# class_nphotos_b2_prop
+# 
+# class_nphotos_c1_prop <- ggplot(species_combined[species_combined$group == 'c' &
+#                                               !species_combined$species %in% classes_remove &
+#                                               species_combined$split == 'training',], 
+#                            aes(x = species, y = (pct), fill = split)) +
+#   # geom_hline(yintercept = c(0.002,0.004,0.006), color = 'gray95') +
+#   geom_bar(stat = 'identity', #position = 'dodge',
+#            width=1, position=position_dodge(1)) + 
+#   geom_bar(data = species_combined[species_combined$group == 'c' &
+#                                      !species_combined$species %in% classes_remove &
+#                                      species_combined$split == 'validation',],
+#            stat = 'identity', width = 0.5, position = position_dodge(1),) +
+#   scale_fill_manual(values = c('#1b9e77','#d95f02')) +
+#   labs(fill = 'Split') + 
+#   coord_flip() +
+#   scale_y_reverse(position = 'left', limits = c(0.007,0), 
+#                   breaks = c(0,0.002,0.004)
+#                   ) +
+#   scale_x_discrete(position = 'top') +
+#   ylab('Proportion of dataset') +
+#   geom_vline(xintercept = seq(0.5, 21, 1), color = 'gray90') +
+#   geom_text(aes(label = round(number_images,3)), position = position_dodge(1), hjust = 1.1,
+#             size = 3, fontface = 'italic', color = '#1b9e77') +
+#   # geom_text(data = species_combined[species_combined$group == 'c' &
+#   #                                     !species_combined$species %in% classes_remove &
+#   #                                     species_combined$split == 'validation',],
+#   #           aes(label = round(pct,3)), position = position_dodge(1), hjust = 1.1,
+#   #           size = 3, fontface = 'italic', color = 'white') +
+#   theme_classic() +
+#   theme(axis.title.y = element_blank(),
+#         axis.title = element_text(size = 12),
+#         axis.text.y = element_blank(),
+#         axis.text = element_text(size = 12),
+#         strip.placement = 'outside',
+#         strip.text.y = element_text(angle = 0, size = 12))
+# class_nphotos_c1_prop
+# 
+# class_nphotos_c2_prop <- ggplot(species_combined[species_combined$group == 'c' & 
+#                                               !species_combined$species %in% classes_remove &
+#                                               species_combined$split == 'test',], 
+#                            aes(x = species, y = (pct), fill = split)) +
+#   geom_hline(yintercept = c(0.002,0.004,0.006), color = 'gray95') +
+#   geom_bar(stat = 'identity', #position = 'dodge',
+#            width=1, position=position_dodge(1)) + 
+#   scale_fill_manual(values = c('#7570b3')) +
+#   labs(fill = 'Split') + ylab('Proportion of dataset') +
+#   coord_flip() +
+#   scale_y_continuous(limits = c(0,0.007), 
+#                      breaks = c(0,0.002,0.004)
+#                      ) +
+#   guides(fill = guide_legend(reverse = TRUE)) +
+#   geom_vline(xintercept = seq(0.5, 20, 1), color = 'gray90') +
+#   geom_text(aes(label = round(number_images,3)), position = position_dodge(1), hjust = 0,
+#             size = 3, fontface = 'italic', color = '#7570b3') +
+#   theme_classic() +
+#   theme(axis.title.y = element_blank(),
+#         axis.title = element_text(size = 12),
+#         axis.text = element_text(size = 12),
+#         axis.text.y = element_text(hjust = 0.5),
+#         strip.placement = 'outside',
+#         strip.text.y = element_text(angle = 0, size = 12))
+# class_nphotos_c2_prop
+# 
+# #(class_nphotos_a1 + theme(legend.position = 'none') | class_nphotos_a2) + plot_layout(widths = c(1, 1))
+# 
+# combined_2_prop <- (((class_nphotos_a1_prop + theme(legend.position = 'none') | class_nphotos_a2_prop + theme(legend.position = 'none')) + plot_layout(widths = c(1, 1))) /
+#                  ((class_nphotos_b1_prop + theme(legend.position = 'none') | class_nphotos_b2_prop + theme(legend.position = 'none')) + plot_layout(widths = c(1, 1))) /
+#                  ((class_nphotos_c1_prop + theme(legend.position = 'inside', legend.position.inside = c(0.3,0.2), legend.text = element_text(size = 12), legend.title = element_blank()) | 
+#                      class_nphotos_c2_prop + theme(legend.position = 'inside', legend.position.inside = c(0.8, 0.2), legend.text = element_text(size = 12), legend.title = element_blank())) + plot_layout(widths = c(1, 1)))) +
+#   # plot_layout(heights = c(1.5, 2.5, 5)) + 
+#   plot_layout(heights = c(2, 3.6, 3.8)) +
+#   plot_annotation(tag_levels = list(c('A', '', 'B', '', 'C', ''))) &
+#   theme(plot.tag = element_text(face = 'bold', size = 16))
+# combined_2_prop
+# 
+# ggsave('figures/images_train_val_prop_groups_sidebyside.png', combined_2_prop, dpi = 600, width = 5, height = 8)
 
-class_nphotos_a1_prop <- ggplot(species_combined[species_combined$group == 'a' &
-                                              !species_combined$species %in% classes_remove &
-                                              species_combined$split == 'training',], 
-                           aes(x = species, y = (pct), fill = split)) +
-  geom_hline(yintercept = c(0.002,0.004,0.006), color = 'gray95') +
-  geom_bar(stat = 'identity', #position = 'dodge',
-           width=1, position=position_dodge(1)) + 
-  geom_bar(data = species_combined[species_combined$group == 'a' &
-                                     !species_combined$species %in% classes_remove &
-                                     species_combined$split == 'validation',],
-           stat = 'identity', width = 0.5, position = position_dodge(1),) +
-  scale_fill_manual(values = c('#1b9e77','#d95f02')) +
-  labs(fill = 'Split') + ylab('Proportion of dataset') +
-  scale_y_reverse(limits = c(0.4,0), 
-                  breaks = c(0,0.2,0.4)
-                  ) +
-  scale_x_discrete(position = 'top') +
-  coord_flip() +
-  guides(fill = guide_legend(reverse = TRUE)) +
-  geom_vline(xintercept = seq(0.5, 20, 1), color = 'gray90') +
-  geom_text(aes(label = round(number_images,2)), position = position_dodge(1), hjust = 1.1,
-            size = 3, fontface = 'italic', color = '#1b9e77') +
-  # geom_text(data = species_combined[species_combined$group == 'a' &
-  #                                     !species_combined$species %in% classes_remove &
-  #                                     species_combined$split == 'validation',],
-  #           aes(label = round(pct,3)), position = position_dodge(1), hjust = 1.1,
-  #           size = 3, fontface = 'italic', color = 'white') +
-  theme_classic() +
-  theme(axis.title.y = element_blank(),
-        axis.title = element_text(size = 12),
-        axis.text.y = element_blank(),
-        axis.text = element_text(size = 12),
-        strip.placement = 'outside',
-        strip.text.y = element_text(angle = 0, size = 12))
-class_nphotos_a1_prop
 
-class_nphotos_a2_prop <- ggplot(species_combined[species_combined$group == 'a' & 
-                                              !species_combined$species %in% classes_remove &
-                                              species_combined$split == 'test',], 
-                           aes(x = species, y = (pct), fill = split)) +
-  geom_hline(yintercept = c(0.002,0.004,0.006), color = 'gray95') +
-  geom_bar(stat = 'identity', #position = 'dodge',
-           width=1, position=position_dodge(1)) + 
-  scale_fill_manual(values = c('#7570b3')) +
-  labs(fill = 'Split') + ylab('Proportion of dataset') +
-  coord_flip() +
-  scale_y_continuous(limits = c(0,0.4), 
-                     breaks = c(0,0.2,0.4)
-                     ) +
-  guides(fill = guide_legend(reverse = TRUE)) +
-  geom_vline(xintercept = seq(0.5, 20, 1), color = 'gray90') +
-  geom_text(aes(label = round(number_images,2)), position = position_dodge(1), hjust = 0,
-            size = 3, fontface = 'italic', color = '#7570b3') +
-  theme_classic() +
-  theme(axis.title.y = element_blank(),
-        axis.title = element_text(size = 12),
-        axis.text = element_text(size = 12),
-        axis.text.y = element_text(hjust = 0.5),
-        strip.placement = 'outside',
-        strip.text.y = element_text(angle = 0, size = 12))
-class_nphotos_a2_prop
-
-class_nphotos_b1_prop <- ggplot(species_combined[species_combined$group == 'b' &
-                                              !species_combined$species %in% classes_remove &
-                                              species_combined$split == 'training',], 
-                           aes(x = species, y = (pct), fill = split)) +
-  geom_hline(yintercept = c(0.002,0.004,0.006), color = 'gray95') +
-  geom_bar(stat = 'identity', #position = 'dodge',
-           width=1, position=position_dodge(1)) + 
-  geom_bar(data = species_combined[species_combined$group == 'b' &
-                                     !species_combined$species %in% classes_remove &
-                                     species_combined$split == 'validation',],
-           stat = 'identity', width = 0.5, position = position_dodge(1),) +
-  scale_fill_manual(values = c('#1b9e77','#d95f02')) +
-  labs(fill = 'Split') + ylab('Proportion of dataset') +
-  scale_y_reverse(limits = c(0.05,0), 
-                  breaks = c(0,0.02,0.04)
-                  ) +
-  scale_x_discrete(position = 'top') +
-  coord_flip() +
-  guides(fill = guide_legend(reverse = TRUE)) +
-  geom_vline(xintercept = seq(0.5, 20, 1), color = 'gray90') +
-  geom_text(aes(label = round(number_images,3)), position = position_dodge(1), hjust = 1.1,
-            size = 3, fontface = 'italic', color = '#1b9e77') +
-  # geom_text(data = species_combined[species_combined$group == 'b' &
-  #                                     !species_combined$species %in% classes_remove &
-  #                                     species_combined$split == 'validation',],
-  #           aes(label = round(pct,3)), position = position_dodge(1), hjust = 1.1,
-  #           size = 3, fontface = 'italic', color = 'white') +
-  theme_classic() +
-  theme(axis.title.y = element_blank(),
-        axis.title = element_text(size = 12),
-        axis.text.y = element_blank(),
-        axis.text = element_text(size = 12),
-        strip.placement = 'outside',
-        strip.text.y = element_text(angle = 0, size = 12))
-class_nphotos_b1_prop
-
-class_nphotos_b2_prop <- ggplot(species_combined[species_combined$group == 'b' & 
-                                              !species_combined$species %in% classes_remove &
-                                              species_combined$split == 'test',], 
-                           aes(x = species, y = (pct), fill = split)) +
-  geom_hline(yintercept = c(0.002,0.004,0.006), color = 'gray95') +
-  geom_bar(stat = 'identity', #position = 'dodge',
-           width=1, position=position_dodge(1)) + 
-  scale_fill_manual(values = c('#7570b3')) +
-  labs(fill = 'Split') + ylab('Proportion of dataset') +
-  coord_flip() +
-  scale_y_continuous(limits = c(0,0.05), 
-                     breaks = c(0,0.02,0.04)
-                     ) +
-  guides(fill = guide_legend(reverse = TRUE)) +
-  geom_vline(xintercept = seq(0.5, 21, 1), color = 'gray90') +
-  geom_text(aes(label = round(number_images,3)), position = position_dodge(1), hjust = 0,
-            size = 3, fontface = 'italic', color = '#7570b3') +
-  theme_classic() +
-  theme(axis.title.y = element_blank(),
-        axis.title = element_text(size = 12),
-        axis.text = element_text(size = 12),
-        axis.text.y = element_text(hjust = 0.5),
-        strip.placement = 'outside',
-        strip.text.y = element_text(angle = 0, size = 12))
-class_nphotos_b2_prop
-
-class_nphotos_c1_prop <- ggplot(species_combined[species_combined$group == 'c' &
-                                              !species_combined$species %in% classes_remove &
-                                              species_combined$split == 'training',], 
-                           aes(x = species, y = (pct), fill = split)) +
-  # geom_hline(yintercept = c(0.002,0.004,0.006), color = 'gray95') +
-  geom_bar(stat = 'identity', #position = 'dodge',
-           width=1, position=position_dodge(1)) + 
-  geom_bar(data = species_combined[species_combined$group == 'c' &
-                                     !species_combined$species %in% classes_remove &
-                                     species_combined$split == 'validation',],
-           stat = 'identity', width = 0.5, position = position_dodge(1),) +
-  scale_fill_manual(values = c('#1b9e77','#d95f02')) +
-  labs(fill = 'Split') + 
-  coord_flip() +
-  scale_y_reverse(position = 'left', limits = c(0.007,0), 
-                  breaks = c(0,0.002,0.004)
-                  ) +
-  scale_x_discrete(position = 'top') +
-  ylab('Proportion of dataset') +
-  geom_vline(xintercept = seq(0.5, 21, 1), color = 'gray90') +
-  geom_text(aes(label = round(number_images,3)), position = position_dodge(1), hjust = 1.1,
-            size = 3, fontface = 'italic', color = '#1b9e77') +
-  # geom_text(data = species_combined[species_combined$group == 'c' &
-  #                                     !species_combined$species %in% classes_remove &
-  #                                     species_combined$split == 'validation',],
-  #           aes(label = round(pct,3)), position = position_dodge(1), hjust = 1.1,
-  #           size = 3, fontface = 'italic', color = 'white') +
-  theme_classic() +
-  theme(axis.title.y = element_blank(),
-        axis.title = element_text(size = 12),
-        axis.text.y = element_blank(),
-        axis.text = element_text(size = 12),
-        strip.placement = 'outside',
-        strip.text.y = element_text(angle = 0, size = 12))
-class_nphotos_c1_prop
-
-class_nphotos_c2_prop <- ggplot(species_combined[species_combined$group == 'c' & 
-                                              !species_combined$species %in% classes_remove &
-                                              species_combined$split == 'test',], 
-                           aes(x = species, y = (pct), fill = split)) +
-  geom_hline(yintercept = c(0.002,0.004,0.006), color = 'gray95') +
-  geom_bar(stat = 'identity', #position = 'dodge',
-           width=1, position=position_dodge(1)) + 
-  scale_fill_manual(values = c('#7570b3')) +
-  labs(fill = 'Split') + ylab('Proportion of dataset') +
-  coord_flip() +
-  scale_y_continuous(limits = c(0,0.007), 
-                     breaks = c(0,0.002,0.004)
-                     ) +
-  guides(fill = guide_legend(reverse = TRUE)) +
-  geom_vline(xintercept = seq(0.5, 20, 1), color = 'gray90') +
-  geom_text(aes(label = round(number_images,3)), position = position_dodge(1), hjust = 0,
-            size = 3, fontface = 'italic', color = '#7570b3') +
-  theme_classic() +
-  theme(axis.title.y = element_blank(),
-        axis.title = element_text(size = 12),
-        axis.text = element_text(size = 12),
-        axis.text.y = element_text(hjust = 0.5),
-        strip.placement = 'outside',
-        strip.text.y = element_text(angle = 0, size = 12))
-class_nphotos_c2_prop
-
-#(class_nphotos_a1 + theme(legend.position = 'none') | class_nphotos_a2) + plot_layout(widths = c(1, 1))
-
-combined_2_prop <- (((class_nphotos_a1_prop + theme(legend.position = 'none') | class_nphotos_a2_prop + theme(legend.position = 'none')) + plot_layout(widths = c(1, 1))) /
-                 ((class_nphotos_b1_prop + theme(legend.position = 'none') | class_nphotos_b2_prop + theme(legend.position = 'none')) + plot_layout(widths = c(1, 1))) /
-                 ((class_nphotos_c1_prop + theme(legend.position = 'inside', legend.position.inside = c(0.3,0.2), legend.text = element_text(size = 12), legend.title = element_blank()) | 
-                     class_nphotos_c2_prop + theme(legend.position = 'inside', legend.position.inside = c(0.8, 0.2), legend.text = element_text(size = 12), legend.title = element_blank())) + plot_layout(widths = c(1, 1)))) +
-  # plot_layout(heights = c(1.5, 2.5, 5)) + 
-  plot_layout(heights = c(2, 3.6, 3.8)) +
-  plot_annotation(tag_levels = list(c('A', '', 'B', '', 'C', ''))) &
-  theme(plot.tag = element_text(face = 'bold', size = 16))
-combined_2_prop
-
-ggsave('figures/images_train_val_prop_groups_sidebyside.png', combined_2_prop, dpi = 600, width = 5, height = 8)
-
-
-## Try circular (polar) bar plots ----------------------------------------------
-
-species_proportions <- species_combined %>% filter(!species %in% classes_remove) %>%
-                              group_by(split) %>%
-                              mutate(proportion = number_images / sum(number_images)) %>%
-                              ungroup
-
-# order levels of split
-species_proportions$split <- factor(species_proportions$split, levels = c('training','validation','test'))
-
-# Sort species by proportion in training data
-species_order <- species_proportions %>%
-  group_by(species) %>%
-  filter(split == 'training') %>%
-  arrange(desc(number_images)) %>%
-  pull(species)
-
-# Convert species to factor with ordered levels
-species_proportions$species <- factor(species_proportions$species, 
-                                      levels = species_order)
-  
-common_facet <- ggplot(species_proportions[species_proportions$group == 'a',], 
-                       aes(x = species, y = proportion, fill = split)) +
-  geom_bar(stat = "identity", position = "dodge", width = 0.7) +
-  scale_fill_viridis(discrete = TRUE) +
-  # facet_grid(~split) +
-  # coord_polar() +
-  theme_minimal() +
-  theme(
-    axis.text.x = element_text(angle = 0, hjust = 1),
-    legend.position = "none",
-    panel.grid.major = element_line(color = "gray90"),
-    panel.grid.minor = element_line(color = "gray95")
-  ) 
-common_facet
-
-rare_facet <- ggplot(species_proportions[species_proportions$group == 'b',], 
-                     aes(x = species, y = proportion, fill = split)) +
-  geom_bar(stat = "identity", position = "dodge", width = 0.7) +
-  scale_fill_viridis(discrete = TRUE) +
-  # facet_grid(~split) +
-  # coord_polar() +
-  theme_minimal() +
-  theme(
-    axis.text.x = element_text(angle = 0, hjust = 1),
-    legend.position = "none",
-    panel.grid.major = element_line(color = "gray90"),
-    panel.grid.minor = element_line(color = "gray95")
-  )
-rare_facet
-
-vrare_facet <- ggplot(species_proportions[species_proportions$group == 'c',], 
-                      aes(x = species, y = proportion, fill = split)) +
-  geom_bar(stat = "identity", position = "dodge", width = 0.7) +
-  scale_fill_viridis(discrete = TRUE) +
-  # facet_grid(~split) +
-  # coord_polar() +
-  theme_minimal() +
-  theme(
-    axis.text.x = element_text(angle = 0, hjust = 1),
-    legend.position = "bottom",
-    panel.grid.major = element_line(color = "gray90"),
-    panel.grid.minor = element_line(color = "gray95")
-  ) 
-vrare_facet
-
-circular_plot <- (common_facet + 
-                    coord_polar() + 
-                    facet_grid(~split) +
-                    theme(legend.position = 'none', axis.title = element_blank())) / 
-                 (rare_facet + 
-                    coord_polar() + 
-                    facet_grid(~split) +
-                    theme(legend.position = 'none', axis.title = element_blank())) / 
-                 (vrare_facet + 
-                    coord_polar() + 
-                    facet_grid(~split) +
-                    theme(legend.position = 'none', axis.title = element_blank()))
-circular_plot
-
-bar_facet <- (common_facet + 
-                    facet_grid(~split) +
-                    theme(legend.position = 'none', axis.title = element_blank())) / 
-             (rare_facet + 
-                facet_grid(~split) +
-                theme(legend.position = 'none', axis.title = element_blank())) / 
-             (vrare_facet + 
-                facet_grid(~split) +
-                theme(legend.position = 'none', axis.title = element_blank()))
-bar_facet
-
-bar_grouped <- (common_facet + 
-                theme(legend.position = 'none', axis.title = element_blank())) / 
-              (rare_facet + 
-                 theme(legend.position = 'none', axis.title = element_blank())) / 
-              (vrare_facet + 
-                 theme(legend.position = 'none', axis.title = element_blank()))
-bar_grouped
+# ## Try circular (polar) bar plots ----------------------------------------------
+# 
+# species_proportions <- species_combined %>% filter(!species %in% classes_remove) %>%
+#                               group_by(split) %>%
+#                               mutate(proportion = number_images / sum(number_images)) %>%
+#                               ungroup
+# 
+# # order levels of split
+# species_proportions$split <- factor(species_proportions$split, levels = c('training','validation','test'))
+# 
+# # Sort species by proportion in training data
+# species_order <- species_proportions %>%
+#   group_by(species) %>%
+#   filter(split == 'training') %>%
+#   arrange(desc(number_images)) %>%
+#   pull(species)
+# 
+# # Convert species to factor with ordered levels
+# species_proportions$species <- factor(species_proportions$species, 
+#                                       levels = species_order)
+#   
+# common_facet <- ggplot(species_proportions[species_proportions$group == 'a',], 
+#                        aes(x = species, y = proportion, fill = split)) +
+#   geom_bar(stat = "identity", position = "dodge", width = 0.7) +
+#   scale_fill_viridis(discrete = TRUE) +
+#   # facet_grid(~split) +
+#   # coord_polar() +
+#   theme_minimal() +
+#   theme(
+#     axis.text.x = element_text(angle = 0, hjust = 1),
+#     legend.position = "none",
+#     panel.grid.major = element_line(color = "gray90"),
+#     panel.grid.minor = element_line(color = "gray95")
+#   ) 
+# common_facet
+# 
+# rare_facet <- ggplot(species_proportions[species_proportions$group == 'b',], 
+#                      aes(x = species, y = proportion, fill = split)) +
+#   geom_bar(stat = "identity", position = "dodge", width = 0.7) +
+#   scale_fill_viridis(discrete = TRUE) +
+#   # facet_grid(~split) +
+#   # coord_polar() +
+#   theme_minimal() +
+#   theme(
+#     axis.text.x = element_text(angle = 0, hjust = 1),
+#     legend.position = "none",
+#     panel.grid.major = element_line(color = "gray90"),
+#     panel.grid.minor = element_line(color = "gray95")
+#   )
+# rare_facet
+# 
+# vrare_facet <- ggplot(species_proportions[species_proportions$group == 'c',], 
+#                       aes(x = species, y = proportion, fill = split)) +
+#   geom_bar(stat = "identity", position = "dodge", width = 0.7) +
+#   scale_fill_viridis(discrete = TRUE) +
+#   # facet_grid(~split) +
+#   # coord_polar() +
+#   theme_minimal() +
+#   theme(
+#     axis.text.x = element_text(angle = 0, hjust = 1),
+#     legend.position = "bottom",
+#     panel.grid.major = element_line(color = "gray90"),
+#     panel.grid.minor = element_line(color = "gray95")
+#   ) 
+# vrare_facet
+# 
+# circular_plot <- (common_facet + 
+#                     coord_polar() + 
+#                     facet_grid(~split) +
+#                     theme(legend.position = 'none', axis.title = element_blank())) / 
+#                  (rare_facet + 
+#                     coord_polar() + 
+#                     facet_grid(~split) +
+#                     theme(legend.position = 'none', axis.title = element_blank())) / 
+#                  (vrare_facet + 
+#                     coord_polar() + 
+#                     facet_grid(~split) +
+#                     theme(legend.position = 'none', axis.title = element_blank()))
+# circular_plot
+# 
+# bar_facet <- (common_facet + 
+#                     facet_grid(~split) +
+#                     theme(legend.position = 'none', axis.title = element_blank())) / 
+#              (rare_facet + 
+#                 facet_grid(~split) +
+#                 theme(legend.position = 'none', axis.title = element_blank())) / 
+#              (vrare_facet + 
+#                 facet_grid(~split) +
+#                 theme(legend.position = 'none', axis.title = element_blank()))
+# bar_facet
+# 
+# bar_grouped <- (common_facet + 
+#                 theme(legend.position = 'none', axis.title = element_blank())) / 
+#               (rare_facet + 
+#                  theme(legend.position = 'none', axis.title = element_blank())) / 
+#               (vrare_facet + 
+#                  theme(legend.position = 'none', axis.title = element_blank()))
+# bar_grouped
 
 
 ## Which sites were in training, test, both? -----------------------------------

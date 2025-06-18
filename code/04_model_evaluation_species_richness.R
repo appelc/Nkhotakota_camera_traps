@@ -14,8 +14,8 @@ preds_df <- fread('outputs/preds_df.csv'); preds_df <- preds_df[,-'V1']
 #Read in species list and filter
 species_keep <- fread('outputs/species_for_metrics.csv', header = TRUE)
 
-true_df <- true_df %>% filter(species %in% species_keep$V2)
-preds_df <- preds_df %>% filter(species_cleaned %in% species_keep$V2)
+true_df <- true_df %>% filter(species_cleaned %in% species_keep$x)
+preds_df <- preds_df %>% filter(species_cleaned %in% species_keep$x)
 
 
 ## Species richness (similar to Whytock et al.) --------------------------------    
@@ -23,7 +23,7 @@ preds_df <- preds_df %>% filter(species_cleaned %in% species_keep$V2)
 head(true_df) #(true is really "observed")
 head(preds_df)  
 
-(species <- species_keep$V2) #from above
+# (species <- species_keep$x) #from above
 thresh <- seq(0.25, 1, by = 0.1)
 
 richness <- NULL #create empty object for storing results
@@ -39,12 +39,12 @@ for (cc in unique(preds_df$site)) { #for each site that had predictions,
     pred_cc_tt <- pred_cc[pred_cc$max_score >= tt,] 
     
     #calculate richness
-    sp_rich_true <- length(unique(true_cc$species)) #true sp richness (threshold isn't relevant here)
-    sp_rich_pred <- length(unique(pred_cc_tt$class)) #predicted sp richness at this threshold
+    sp_rich_true <- length(unique(true_cc$species_cleaned)) #true sp richness (threshold isn't relevant here)
+    sp_rich_pred <- length(unique(pred_cc_tt$species_cleaned)) #predicted sp richness at this threshold
 
     #store
     rich_cc <- data.frame('site' = cc, 'thresh' = tt, 'rich_obs' = sp_rich_true, 'rich_pred' = sp_rich_pred) #wide format
-    sp_cc <- list('sp_true' = unique(true_cc$species) , 'sp_pred' = unique(pred_cc_tt$class))
+    sp_cc <- list('sp_true' = unique(true_cc$species_cleaned) , 'sp_pred' = unique(pred_cc_tt$species_cleaned))
     
     #save
     richness <- bind_rows(richness, rich_cc)
@@ -113,8 +113,9 @@ sp_rich_plot <- ggplot(data = richness, aes(x = rich_obs, y = rich_pred)) +
                      axis.text = element_text(size = 10),
                      strip.text = element_text(size = 12))
 sp_rich_plot
-# ggsave('figures/species_richness_ggplot.png', sp_rich_plot, dpi = 1000, width = 7, height = 4)
-  
+# ggsave('figures/species_richness_fig7.png', sp_rich_plot, dpi = 1000, width = 7, height = 4)
+ggsave('figures/species_richness_fig7.tif', sp_rich_plot, dpi = 600, width = 7, height = 4)
+
   
 ## Summaries -------------------------------------------------------------------
 

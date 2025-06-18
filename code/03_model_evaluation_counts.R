@@ -287,7 +287,8 @@ table(preds_df$max_group_size)
 sp_matches_TP$max_group_size <- group_size$group_max[match(sp_matches_TP$class_true, group_size$class_true)]
 
 #read in phylopic IDs
-phylopic_ids <- fread('outputs/phylopic_ids.csv'); phylopic_ids <- phylopic_ids[,-'V1']
+# phylopic_ids <- fread('outputs/phylopic_ids.csv'); phylopic_ids <- phylopic_ids[,-'V1']
+phylopic_ids <- fread('outputs/phylopic_ids_new.csv'); phylopic_ids <- phylopic_ids[,-'V1']
 
 #add coordinates for plotting (each has its own axis, helps to plot below first without)
 phylopic_ids$x[phylopic_ids$species_cleaned == 'bushbuck'] <- 2.2
@@ -522,7 +523,8 @@ fig6p <- ((mod1b_plot_prop +
   plot_annotation(tag_levels = 'A') & 
   theme(plot.tag = element_text(face = 'bold', size = 16)) #plot.tag.position = c(0.05, 0.95)
 fig6p
-# ggsave('figures/count_model_panel3_f_poisson2.png', fig6p, dpi = 1000, width = 9, height = 10)
+# ggsave('figures/count_model_panel_fig8.png', fig6p, dpi = 1000, width = 9, height = 10)
+ggsave('figures/count_model_panel_fig8.tif', fig6p, dpi = 600, width = 9, height = 10)
 
 
 ##To report in appendix:

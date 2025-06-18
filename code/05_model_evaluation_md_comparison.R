@@ -162,8 +162,8 @@ for (tt in thresh){
 results_combined <- rbindlist(results_list)  
 
 #save
-# saveRDS(results_list, 'outputs/empty_results_list.RDS')
-# write.csv(results_combined, 'outputs/empty_results.csv')
+saveRDS(results_list, 'outputs/empty_results_list.RDS')
+write.csv(results_combined, 'outputs/empty_results.csv')
 
   
 ## Create confusion matrices ---------------------------------------------------
@@ -366,8 +366,8 @@ missed_df$prop_missed_yolo <- missed_df$yolo_missed / missed_df$test_n
 
 ## Calculate sensitivity/specificity -------------------------------------------    
     
-#Read back in
-results_combined <- fread('outputs/empty_results.csv')  
+#Read back in if necessary
+# results_combined <- fread('outputs/empty_results.csv')  
 head(results_combined)
 
 #Filter to test set only
@@ -446,6 +446,7 @@ figure_4 <- ((md_true + theme(legend.position = 'none') | yolo_true | md_yolo) /
         plot.tag.position = c(0.05, 0.95))
 figure_4
 
-# ggsave('figures/confusion_matrices_thresh25_with_sens_spec_2.png', figure_4, dpi = 1000, width = 10, height = 8)
-  
+# ggsave('figures/confusion_matrices_sens_spec.png', figure_4, dpi = 1000, width = 10, height = 8)
+ggsave('figures/confusion_matrices_sens_spec_fig4.tif', figure_4, dpi = 600, width = 10, height = 8)
+
     
