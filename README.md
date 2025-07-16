@@ -6,7 +6,7 @@
 
 🔗 The model weights file is available to download here: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15994922.svg)](https://doi.org/10.5281/zenodo.15994922) and instructions for performing inference are included below.
 
-🐘 Images and annotations are published in the [**Nkhotakota Camera Traps**](https://lila.science/datasets/nkhotakota-camera-traps/) project on LILA.science.
+🐘 Images and annotations are published in the [Nkhotakota Camera Traps](https://lila.science/datasets/nkhotakota-camera-traps/) project on LILA BC.
 
 ------------------------------------------------------------------------
 
@@ -50,7 +50,7 @@ Python code to perform inference using the Nkhotakota YOLOv4 multiclass detector
 
 ------------------------------------------------------------------------
 
-### Example implementation of NWR_YOLO model 
+### Example implementation of NWR_YOLO model
 
 #### OPTION 1: using Njobvu-AI
 
@@ -67,7 +67,7 @@ Python code to perform inference using the Nkhotakota YOLOv4 multiclass detector
 #### OPTION 2: using the command line
 
 1.  Download the [NWR_YOLO](https://github.com/appelc/Nkhotakota_camera_traps/tree/main/NWR_YOLO) folder from this repository
-2.  Download the [NWR_YOLO_v1 model from Zenodo](https://doi.org/10.5281/zenodo.15392141), unzip the folder, and place it in the NWR_YOLO directory from Step 1
+2.  Download the [NWR_YOLO_v1 model from Zenodo](https://doi.org/10.5281/zenodo.15392141). Unzip the contents of "model_files.zip" and place these 3 files in the NWR_YOLO directory from Step 1
 3.  Ensure [darknet](https://github.com/AlexeyAB/darknet) is installed locally
 4.  Open `inference_yolo.py` in a text editor and update **darknet_path** (line 15) with the installation location from Step 3
 5.  Ensure image data are organized in the following way: *base_dir/image_folder/file1.JPG*, etc.
@@ -80,7 +80,7 @@ python inference_yolo.py path/to/base_dir/image_folder --device 0
 
 *NOTE:* the `--device` argument calls NVIDIA GPUs (highly recommended). If enabled on your system, reference the desired device here (e.g., 0, 1, 2). Note that CUDA must be enabled with darknet. If not using NVIDIA GPUs, omit the `--device` argument to run with CPUs.
 
-To create a Njobvu-AI project using the predictions from Step 7:
+To create an Njobvu-AI project using the predictions from Step 7:
 
 8.  Ensure [Njobvu-AI](https://github.com/sullichrosu/Njobvu-AI) is installed locally
 9.  Open `njobvu_project.py` in a text editor and update **njobvu_dir** (line 12) with the location of your local **Njobvu-AI-main** folder
