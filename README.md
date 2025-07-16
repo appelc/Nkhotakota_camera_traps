@@ -1,12 +1,12 @@
 # Nkhotakota camera traps
 
-## Code and data for Appel et al. (Ecological Applications)
+## Code and data for Appel et al. 2025, *Ecological Applications*
 
 🖥️ This repository contains code and data to evaluate a YOLOv4 multiclass detector model trained on wildlife species from camera trap images in Nkhotakota Wildlife Reserve (NWR), Malawi. Annotation, model training, and review were performed using the [Njobvu-AI](https://github.com/sullichrosu/Njobvu-AI) software.
 
-🔗 The model weights file is available to download here: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15392141.svg)](https://doi.org/10.5281/zenodo.15392141) and an inference script is included [below](#example-implementation-of-nwr_yolo-model).
+🔗 The model weights file is available to download here: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15994922.svg)](https://doi.org/10.5281/zenodo.15994922) and instructions for performing inference are included below.
 
-🐘 Images and annotations are published in the **Nkhotakota Camera Traps** project on [LILA.science](https://lila.science/).
+🐘 Images and annotations are published in the [**Nkhotakota Camera Traps**](https://lila.science/datasets/nkhotakota-camera-traps/) project on LILA.science.
 
 ------------------------------------------------------------------------
 
@@ -46,23 +46,23 @@ Python code to perform inference using the Nkhotakota YOLOv4 multiclass detector
 
 -   `inference_yolo.py` to generate predictions on new data
 
--   `njobvu_project.py` to create a Njobvu-AI project for review of model predictions
+-   `njobvu_project.py` to create an Njobvu-AI project for review of model predictions
 
 ------------------------------------------------------------------------
 
-### Example implementation of NWR_YOLO model {#example-implementation-of-nwr_yolo-model}
+### Example implementation of NWR_YOLO model 
 
 #### OPTION 1: using Njobvu-AI
 
-1.  Download the [NWR_YOLO_v1 model from Zenodo](https://doi.org/10.5281/zenodo.15392141) and unzip the folder
+1.  Download the [NWR_YOLO_v1 model files from Zenodo](https://zenodo.org/records/15994922) and unzip the folder
 
 2.  Ensure [Njobvu-AI](https://github.com/sullichrosu/Njobvu-AI) is installed locally
 
 3.  Ensure [darknet](https://github.com/AlexeyAB/darknet) is installed locally
 
-4.  Follow the instructions for Inference from the Njobvu-AI documentation ()
+4.  Follow the instructions to create a project with optional image classification from the [Njobvu-AI documentation](https://github.com/sullichrosu/Njobvu-AI?tab=readme-ov-file#installation)
 
-    *NOTE:* the model weights input will be the file "X.zip" in the folder downloaded in Step 1
+    *NOTE:* the input with model weights and configuration files will be "model_files.zip" in the folder downloaded in Step 1
 
 #### OPTION 2: using the command line
 
