@@ -223,19 +223,17 @@ preds_sp_list <- lapply(species, function(sp) preds_df[preds_df$species_cleaned 
   metrics_filtered$species_cleaned <- gsub('_', ' ', metrics_filtered$species_cleaned)
   
   #list phylopic IDs
-  phylopic_ids <- data.frame('species_cleaned' = sort(unique(metrics_filtered$species_cleaned)), #[-12] to remove ground hornbill
+  phylopic_ids <- data.frame('species_cleaned' = sort(unique(metrics_filtered$species_cleaned)),
                              'id' = c('cfee2dca-3767-46b8-8d03-bd8f46e79e9e','72f2f854-f3cd-4666-887c-35d5c256ab0f',
                                       '65c4a9b3-dcde-4f0f-9a1f-8d71e74be9ec','7fb9bea8-e758-4986-afb2-95a2c3bf983d',
                                       # '540d58bc-d82f-4cfc-a63b-2c37d083edec','3d8acaf6-4355-491e-8e86-4a411b53b98b', #lesser kudu and sus scrofa here
                                       '540d58bc-d82f-4cfc-a63b-2c37d083edec','565c4a96-c80d-4ee3-86df-6f6c58ba2338', #lesser kudu and red river hog here
                                       '7f4984bb-65ba-4f77-a92d-96e2c5dc65f0','6f3ebbc6-be53-4216-b45b-946f7984669b',
                                       '7db171af-ac7a-4859-9c2b-66488a5a5c95','62398ac0-f0c3-48f8-8455-53512a05fbc4',
-                                     # '4f49e5d0-f41e-427c-a1ab-9ec51e1bd72b','a8018e40-5257-4ad5-a42e-6fbad115deab',
-                                      '4f49e5d0-f41e-427c-a1ab-9ec51e1bd72b', NA, #removed ground hornbill
+                                      '4f49e5d0-f41e-427c-a1ab-9ec51e1bd72b','a8018e40-5257-4ad5-a42e-6fbad115deab',
                                       'f7200232-d635-4d79-bcaa-a59867376d09','8952c22d-1d0b-4658-b8ff-348df8aff18f',
                                       '880baa26-af89-44ad-ae07-e92b84e3ff05','49b72776-1f99-442b-a084-65f402cdbd69',
-                                      # 'e07d1491-1d85-4c47-9f7d-075ea57bf0c5','f25267a2-90b4-4ca7-af95-a425f3564bbe',
-                                      'e07d1491-1d85-4c47-9f7d-075ea57bf0c5','a3c50373-4fc4-44b2-9c09-fb9959f5893e', #different kudu here (2nd)
+                                      'e07d1491-1d85-4c47-9f7d-075ea57bf0c5','f25267a2-90b4-4ca7-af95-a425f3564bbe',
                                       # '5e900306-3a5e-4193-8a94-74cc765f0aaf','a0cde6a8-4a47-4562-827f-90bd8d7bdd05',
                                       '9f33e613-944c-483d-8275-cc59a1b470c2','a0cde6a8-4a47-4562-827f-90bd8d7bdd05', #replaced leopard (1st)
                                       'cf85f532-c0c2-40ba-ae83-47846caf1514','bb357997-4d4d-4e73-b853-d95a7a47ec68',
@@ -261,10 +259,6 @@ preds_sp_list <- lapply(species, function(sp) preds_df[preds_df$species_cleaned 
                                                 0.3,0.2, #small antelope, squirrel
                                                 0.3,0.3,
                                                 0.5,0.4))
-  
-  #add hornbill manually
-  phylopic_ids$image_path <- NA
-  phylopic_ids$image_path[phylopic_ids$species_cleaned == 'ground hornbill'] <- 'groundhornbill.svg'
   
   #save phylopic IDs
   #write.csv(phylopic_ids, 'outputs/phylopic_ids_new2.csv')
@@ -302,9 +296,8 @@ preds_sp_list <- lapply(species, function(sp) preds_df[preds_df$species_cleaned 
                        axis.title.y = element_blank(),
                        legend.background = element_rect(color = 'gray'))
   metrics_grid
-  # ggsave('figures/grid_metrics_fig6.png', metrics_grid, dpi = 1000, width = 8, height = 12)
-  ggsave('figures/grid_metrics_fig6_noHornbill.tif', metrics_grid, dpi = 600, width = 8, height = 12)
-  
+  ggsave('figures/grid_metrics_fig6.tif', metrics_grid, dpi = 600, width = 8, height = 12)
+
   #Some summaries to report:
   head(metrics_filtered)
 
@@ -488,21 +481,21 @@ preds_sp_list <- lapply(species, function(sp) preds_df[preds_df$species_cleaned 
 ## Get phylopic attributions ---------------------------------------------------
   
   'id' = c('cfee2dca-3767-46b8-8d03-bd8f46e79e9e','72f2f854-f3cd-4666-887c-35d5c256ab0f',
-            '65c4a9b3-dcde-4f0f-9a1f-8d71e74be9ec','7fb9bea8-e758-4986-afb2-95a2c3bf983d',
-            '540d58bc-d82f-4cfc-a63b-2c37d083edec','565c4a96-c80d-4ee3-86df-6f6c58ba2338', #lesser kudu and red river hog here
-            '7f4984bb-65ba-4f77-a92d-96e2c5dc65f0','6f3ebbc6-be53-4216-b45b-946f7984669b',
-            '7db171af-ac7a-4859-9c2b-66488a5a5c95','62398ac0-f0c3-48f8-8455-53512a05fbc4',
-            '4f49e5d0-f41e-427c-a1ab-9ec51e1bd72b', #removed ground hornbill
-            'f7200232-d635-4d79-bcaa-a59867376d09','8952c22d-1d0b-4658-b8ff-348df8aff18f',
-            '880baa26-af89-44ad-ae07-e92b84e3ff05','49b72776-1f99-442b-a084-65f402cdbd69',
-            'e07d1491-1d85-4c47-9f7d-075ea57bf0c5','a3c50373-4fc4-44b2-9c09-fb9959f5893e', #different kudu here (2nd)
-            '9f33e613-944c-483d-8275-cc59a1b470c2','a0cde6a8-4a47-4562-827f-90bd8d7bdd05', #replaced leopard (1st)
-            'cf85f532-c0c2-40ba-ae83-47846caf1514','bb357997-4d4d-4e73-b853-d95a7a47ec68',
-            'a363eadc-1b1e-41fb-ba8c-b45cb405a850','a6c8cc22-c035-48e1-bd2a-98a29446b392', #actually both roan
-            '8930c815-0a3e-4b77-a2da-e7273bccddd7','01895510-7c27-489d-b441-6f72b1f562d2',
-            'c9aaafb0-bbab-43b7-b2a8-077ae0799b96','2916f8fe-290a-423b-b6f7-fb975c30d518', #replaced squirrel (2nd)
-            '9ebe32a3-3870-4073-9992-998dafe98014','d594a0c4-2708-4cde-ba41-08fde8b1184f',
-            'f93103f1-e2a0-4c73-b274-c7b51afe4db0','81caf94e-5cbe-4e5e-8101-545abea2bfc0')
+           '65c4a9b3-dcde-4f0f-9a1f-8d71e74be9ec','7fb9bea8-e758-4986-afb2-95a2c3bf983d',
+           '540d58bc-d82f-4cfc-a63b-2c37d083edec','565c4a96-c80d-4ee3-86df-6f6c58ba2338', #lesser kudu and red river hog here
+           '7f4984bb-65ba-4f77-a92d-96e2c5dc65f0','6f3ebbc6-be53-4216-b45b-946f7984669b',
+           '7db171af-ac7a-4859-9c2b-66488a5a5c95','62398ac0-f0c3-48f8-8455-53512a05fbc4',
+           '4f49e5d0-f41e-427c-a1ab-9ec51e1bd72b','a8018e40-5257-4ad5-a42e-6fbad115deab',
+           'f7200232-d635-4d79-bcaa-a59867376d09','8952c22d-1d0b-4658-b8ff-348df8aff18f',
+           '880baa26-af89-44ad-ae07-e92b84e3ff05','49b72776-1f99-442b-a084-65f402cdbd69',
+           'e07d1491-1d85-4c47-9f7d-075ea57bf0c5','f25267a2-90b4-4ca7-af95-a425f3564bbe',
+           '9f33e613-944c-483d-8275-cc59a1b470c2','a0cde6a8-4a47-4562-827f-90bd8d7bdd05', #replaced leopard (1st)
+           'cf85f532-c0c2-40ba-ae83-47846caf1514','bb357997-4d4d-4e73-b853-d95a7a47ec68',
+           'a363eadc-1b1e-41fb-ba8c-b45cb405a850','a6c8cc22-c035-48e1-bd2a-98a29446b392', #actually both roan
+           '8930c815-0a3e-4b77-a2da-e7273bccddd7','01895510-7c27-489d-b441-6f72b1f562d2',
+           'c9aaafb0-bbab-43b7-b2a8-077ae0799b96','2916f8fe-290a-423b-b6f7-fb975c30d518', #replaced squirrel (2nd)
+           '9ebe32a3-3870-4073-9992-998dafe98014','d594a0c4-2708-4cde-ba41-08fde8b1184f',
+           'f93103f1-e2a0-4c73-b274-c7b51afe4db0','81caf94e-5cbe-4e5e-8101-545abea2bfc0')
   
   get_attribution(id, text = TRUE, permalink = TRUE)
   
