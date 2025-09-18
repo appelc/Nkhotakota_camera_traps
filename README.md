@@ -1,6 +1,6 @@
 # Nkhotakota camera traps
 
-## Code and data for Appel et al. 2025, *Ecological Applications*
+## Code and data for [Appel et al. 2025](https://doi.org/10.1002/eap.70096) (*Ecological Applications*)
 
 🖥️ This repository contains code and data to evaluate a YOLOv4 multiclass detector model trained on wildlife species from camera trap images in Nkhotakota Wildlife Reserve (NWR), Malawi. Annotation, model training, and review were performed using the [Njobvu-AI](https://github.com/sullichrosu/Njobvu-AI) software.
 
@@ -96,3 +96,9 @@ python njobvu_project.py path/to/base_dir/image_folder/OUTfile.txt
 | ![](leopard.png) | ![](zebra.png)        |
 
 *Example images from Nkhotakota Camera Traps*
+
+------------------------------------------------------------------------
+
+### Citation:
+
+Appel, Cara L., Ashwin Subramanian, Jonathan S. Koning, Marnet Ngosi, Christopher M. Sullivan, Taal Levi, and Damon B. Lesmeister. 2025. “Developing Custom Computer Vision Models with Njobvu-AI: A Collaborative, User-Friendly Platform for Ecological Research.” Ecological Applications 35(6): e70096. [doi.org/10.1002/eap.70096](https://doi.org/10.1002/eap.70096)
